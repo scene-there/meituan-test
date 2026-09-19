@@ -1,0 +1,2741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>技换空间 · 技能互换平台原型</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --primary: #6366F1;
+  --primary-light: #818CF8;
+  --primary-dark: #4F46E5;
+  --secondary: #10B981;
+  --accent: #F59E0B;
+  --danger: #EF4444;
+  --bg: #F8FAFC;
+  --card: #FFFFFF;
+  --text: #1E293B;
+  --text-secondary: #64748B;
+  --text-light: #94A3B8;
+  --border: #E2E8F0;
+  --shadow: rgba(0, 0, 0, 0.06);
+  --shadow-strong: rgba(0, 0, 0, 0.12);
+  --radius: 12px;
+  --radius-lg: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: #0F172A;
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Phone frame */
+.phone-frame {
+  width: 100%;
+  max-width: 390px;
+  height: 844px;
+  background: var(--bg);
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+  border: 8px solid #1E293B;
+}
+
+/* Status bar */
+.status-bar {
+  height: 44px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  position: relative;
+  z-index: 100;
+}
+
+.status-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+/* App content */
+.app-content {
+  height: calc(100% - 44px - 83px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+.app-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Page */
+.page {
+  display: none;
+  animation: slideIn 0.3s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Bottom nav */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 83px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding-top: 8px;
+  z-index: 100;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  color: var(--text-light);
+  font-size: 10px;
+  padding: 4px 0;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.nav-item i {
+  font-size: 22px;
+}
+
+.nav-item.active {
+  color: var(--primary);
+}
+
+.nav-item.publish-btn {
+  position: relative;
+  top: -20px;
+}
+
+.nav-item.publish-btn .publish-icon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* Home header */
+.home-header {
+  padding: 8px 20px 16px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  position: relative;
+}
+
+.home-greeting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.greeting-text h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.greeting-text p {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.avatar-sm {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+/* Search bar */
+.search-bar {
+  background: rgba(255,255,255,0.2);
+  border-radius: 25px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.search-bar i {
+  opacity: 0.9;
+}
+
+.search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+}
+
+.search-bar input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Stats card */
+.stats-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.stat-item {
+  flex: 1;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.stat-label {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+/* Section title */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 12px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title i {
+  color: var(--primary);
+}
+
+.section-more {
+  font-size: 13px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Category tags */
+.categories {
+  display: flex;
+  gap: 10px;
+  padding: 0 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.categories::-webkit-scrollbar {
+  display: none;
+}
+
+.category-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.category-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: white;
+}
+
+.category-icon.music { background: linear-gradient(135deg, #EC4899, #F472B6); }
+.category-icon.code { background: linear-gradient(135deg, #3B82F6, #60A5FA); }
+.category-icon.design { background: linear-gradient(135deg, #8B5CF6, #A78BFA); }
+.category-icon.language { background: linear-gradient(135deg, #10B981, #34D399); }
+.category-icon.photo { background: linear-gradient(135deg, #F59E0B, #FBBF24); }
+.category-icon.sport { background: linear-gradient(135deg, #EF4444, #F87171); }
+
+.category-name {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* Skill card */
+.skill-cards {
+  padding: 0 20px;
+}
+
+.skill-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px var(--shadow);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.skill-card:active {
+  transform: scale(0.98);
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.skill-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.skill-user-info {
+  flex: 1;
+}
+
+.skill-user-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.verify-badge {
+  color: var(--primary);
+  font-size: 12px;
+}
+
+.skill-user-desc {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.match-badge {
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  color: #D97706;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.skill-card-body {
+  margin-bottom: 12px;
+}
+
+.skill-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.skill-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.skill-tag {
+  padding: 3px 10px;
+  background: #EEF2FF;
+  color: var(--primary-dark);
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.skill-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.skill-price {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.skill-price.free {
+  color: var(--secondary);
+}
+
+.skill-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.skill-meta span {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Banner */
+.banner {
+  margin: 16px 20px;
+  background: linear-gradient(135deg, #10B981, #059669);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.banner-desc {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.banner-btn {
+  margin-top: 10px;
+  display: inline-block;
+  background: white;
+  color: var(--secondary);
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.banner-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 48px;
+  opacity: 0.2;
+}
+
+/* Discover page */
+.discover-tabs {
+  display: flex;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.discover-tab {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  font-weight: 500;
+}
+
+.discover-tab.active {
+  color: var(--primary);
+}
+
+.discover-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--bg);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-tag {
+  flex: 0 0 auto;
+  padding: 6px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filter-tag.active {
+  background: #EEF2FF;
+  border-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+/* Message page */
+.msg-list {
+  padding: 0 20px;
+}
+
+.msg-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.msg-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  position: relative;
+}
+
+.msg-avatar .badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  background: var(--danger);
+  color: white;
+  border-radius: 9px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  border: 2px solid var(--card);
+}
+
+.msg-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.msg-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.msg-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.msg-time {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.msg-preview {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Profile page */
+.profile-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  padding: 20px 20px 40px;
+  color: white;
+  position: relative;
+}
+
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.profile-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  border: 3px solid rgba(255,255,255,0.5);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-id {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.profile-edit {
+  background: rgba(255,255,255,0.2);
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.profile-stats {
+  display: flex;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.profile-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.profile-stat-num {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.profile-stat-label {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+/* Wallet card */
+.wallet-card {
+  margin: -24px 20px 16px;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: 0 4px 20px var(--shadow-strong);
+  position: relative;
+  z-index: 10;
+}
+
+.wallet-balance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.wallet-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wallet-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+.wallet-amount {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.wallet-amount-label {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.wallet-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.wallet-btn {
+  flex: 1;
+  padding: 10px;
+  background: #F1F5F9;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.wallet-btn.primary {
+  background: #EEF2FF;
+  color: var(--primary-dark);
+}
+
+/* Menu list */
+.menu-section {
+  margin: 16px 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:active {
+  background: var(--bg);
+}
+
+.menu-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: white;
+}
+
+.menu-icon.purple { background: #8B5CF6; }
+.menu-icon.green { background: #10B981; }
+.menu-icon.orange { background: #F59E0B; }
+.menu-icon.blue { background: #3B82F6; }
+.menu-icon.pink { background: #EC4899; }
+.menu-icon.gray { background: #64748B; }
+
+.menu-text {
+  flex: 1;
+  font-size: 14px;
+}
+
+.menu-arrow {
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+.menu-badge {
+  background: var(--danger);
+  color: white;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+/* Publish page */
+.publish-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+  display: none;
+  align-items: flex-end;
+}
+
+.publish-modal.show {
+  display: flex;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.publish-sheet {
+  width: 100%;
+  background: var(--bg);
+  border-radius: 24px 24px 0 0;
+  padding: 24px 20px 32px;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.publish-sheet-header {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.publish-sheet-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.publish-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.publish-options {
+  display: flex;
+  gap: 12px;
+}
+
+.publish-option {
+  flex: 1;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.publish-option:active {
+  transform: scale(0.96);
+}
+
+.publish-option.teach {
+  border-color: var(--secondary);
+  background: linear-gradient(135deg, #ECFDF5, var(--card));
+}
+
+.publish-option.learn {
+  border-color: #8B5CF6;
+  background: linear-gradient(135deg, #F5F3FF, var(--card));
+}
+
+.publish-option-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 26px;
+  color: white;
+}
+
+.publish-option.teach .publish-option-icon {
+  background: linear-gradient(135deg, #10B981, #059669);
+}
+
+.publish-option.learn .publish-option-icon {
+  background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+}
+
+.publish-option-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.publish-option-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Skill detail page */
+.detail-header {
+  position: sticky;
+  top: 0;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  z-index: 50;
+}
+
+.detail-back {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.detail-title {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.detail-action {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.detail-user-section {
+  padding: 16px 20px;
+  background: var(--card);
+}
+
+.detail-user-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.detail-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.detail-user-text {
+  flex: 1;
+}
+
+.detail-username {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detail-user-meta {
+  font-size: 12px;
+  color: var(--text-light);
+  display: flex;
+  gap: 12px;
+}
+
+.detail-rating {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.detail-follow-btn {
+  padding: 8px 18px;
+  background: var(--primary);
+  color: white;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.detail-content-section {
+  margin-top: 10px;
+  background: var(--card);
+  padding: 16px 20px;
+}
+
+.detail-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detail-skill-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.detail-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.detail-skill-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.detail-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.detail-info-item {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.detail-info-label {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+
+.detail-info-value {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Reviews */
+.review-section {
+  margin-top: 10px;
+  background: var(--card);
+  padding: 16px 20px;
+}
+
+.review-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.review-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.review-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.review-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.review-rating {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.review-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Bottom action bar */
+.bottom-action {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+}
+
+.action-price {
+  flex: 1;
+}
+
+.action-price-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.action-price-label {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.action-chat {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+}
+
+.action-btn:active {
+  transform: scale(0.96);
+}
+
+/* Chat page */
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.chat-back {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.chat-user-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-avatar-sm {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chat-user-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.chat-user-status {
+  font-size: 11px;
+  color: var(--secondary);
+}
+
+.chat-more {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.chat-messages {
+  padding: 16px;
+  min-height: 500px;
+}
+
+.chat-date {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-light);
+  margin: 12px 0;
+}
+
+.msg-bubble {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.msg-bubble.sent {
+  flex-direction: row-reverse;
+}
+
+.msg-bubble-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.msg-bubble-content {
+  max-width: 70%;
+}
+
+.msg-bubble-text {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.msg-bubble.received .msg-bubble-text {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top-left-radius: 4px;
+}
+
+.msg-bubble.sent .msg-bubble-text {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border-top-right-radius: 4px;
+}
+
+.msg-bubble-time {
+  font-size: 10px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+.msg-bubble.sent .msg-bubble-time {
+  text-align: right;
+}
+
+/* Exchange card */
+.exchange-card {
+  background: #EEF2FF;
+  border: 1px solid #C7D2FE;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 8px 0;
+}
+
+.exchange-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exchange-info {
+  font-size: 12px;
+  color: var(--primary-dark);
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.exchange-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.exchange-btn {
+  flex: 1;
+  padding: 6px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.exchange-btn.accept {
+  background: var(--primary);
+  color: white;
+}
+
+.exchange-btn.decline {
+  background: white;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+/* Chat input */
+.chat-input-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+}
+
+.chat-input-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.chat-input {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 20px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  outline: none;
+}
+
+.chat-send {
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Page title for sub-pages */
+.sub-page-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.sub-page-back {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.sub-page-title {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sub-page-right {
+  width: 36px;
+}
+
+/* Community feed */
+.feed-card {
+  background: var(--card);
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+
+.feed-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.feed-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.feed-user-info {
+  flex: 1;
+}
+
+.feed-username {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.feed-time {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.feed-content {
+  padding: 0 16px 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.feed-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 0 16px 12px;
+}
+
+.feed-img {
+  width: 100%;
+  padding-bottom: 100%;
+  background: var(--bg);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.feed-tags {
+  padding: 0 16px 12px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.feed-tag {
+  padding: 3px 10px;
+  background: #EEF2FF;
+  color: var(--primary-dark);
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.feed-actions {
+  display: flex;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.feed-action {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.feed-action i {
+  font-size: 16px;
+}
+
+/* Prototype indicator */
+.prototype-hint {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(99, 102, 241, 0.95);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .demo-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 900px;
+  }
+  
+  .demo-info {
+    flex: 1;
+    padding-top: 40px;
+    color: white;
+  }
+  
+  .demo-info h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #A5B4FC, #C4B5FD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .demo-info p {
+    color: #94A3B8;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  
+  .demo-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .demo-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #CBD5E1;
+    font-size: 14px;
+  }
+  
+  .demo-feature i {
+    width: 28px;
+    height: 28px;
+    background: rgba(99, 102, 241, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #818CF8;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .demo-info {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-wrapper">
+  <div class="demo-info">
+    <h1>技换空间</h1>
+    <p>以技会友，双向成长 —— 一个专注于技能交换的互助学习平台。用你擅长的，换你想学的。</p>
+    <div class="demo-features">
+      <div class="demo-feature"><i class="fas fa-exchange-alt"></i> 智能双向匹配，精准找到学习伙伴</div>
+      <div class="demo-feature"><i class="fas fa-coins"></i> 技能币系统，解决价值不对等问题</div>
+      <div class="demo-feature"><i class="fas fa-users"></i> 温暖的学习社区，以技会友</div>
+      <div class="demo-feature"><i class="fas fa-shield-alt"></i> 信誉评价体系，保障交换质量</div>
+    </div>
+    <p style="margin-top: 24px; font-size: 13px; color: #64748B;">
+      <i class="fas fa-hand-pointer"></i> 点击底部导航栏体验不同页面
+    </p>
+  </div>
+
+  <div class="phone-frame">
+    <!-- Status bar -->
+    <div class="status-bar">
+      <span>9:41</span>
+      <div class="status-bar-right">
+        <i class="fas fa-signal"></i>
+        <i class="fas fa-wifi"></i>
+        <i class="fas fa-battery-full"></i>
+      </div>
+    </div>
+
+    <!-- App content -->
+    <div class="app-content" id="appContent">
+
+      <!-- Home page -->
+      <div class="page active" id="page-home">
+        <div class="home-header">
+          <div class="home-greeting">
+            <div class="greeting-text">
+              <h2>你好，小明 👋</h2>
+              <p>今天想学点什么新技能？</p>
+            </div>
+            <div class="avatar-sm">
+              <i class="fas fa-user"></i>
+            </div>
+          </div>
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="搜索想学的技能...">
+          </div>
+          <div class="stats-row">
+            <div class="stat-item">
+              <div class="stat-value">128</div>
+              <div class="stat-label">技能币</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">6</div>
+              <div class="stat-label">已交换</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">4.8</div>
+              <div class="stat-label">信誉分</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-th-large"></i>
+            技能分类
+          </div>
+          <div class="section-more">
+            全部 <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+
+        <div class="categories">
+          <div class="category-item">
+            <div class="category-icon music"><i class="fas fa-music"></i></div>
+            <div class="category-name">音乐乐器</div>
+          </div>
+          <div class="category-item">
+            <div class="category-icon code"><i class="fas fa-code"></i></div>
+            <div class="category-name">编程开发</div>
+          </div>
+          <div class="category-item">
+            <div class="category-icon design"><i class="fas fa-palette"></i></div>
+            <div class="category-name">设计创意</div>
+          </div>
+          <div class="category-item">
+            <div class="category-icon language"><i class="fas fa-language"></i></div>
+            <div class="category-name">外语学习</div>
+          </div>
+          <div class="category-item">
+            <div class="category-icon photo"><i class="fas fa-camera"></i></div>
+            <div class="category-name">摄影后期</div>
+          </div>
+          <div class="category-item">
+            <div class="category-icon sport"><i class="fas fa-running"></i></div>
+            <div class="category-name">运动健身</div>
+          </div>
+        </div>
+
+        <div class="banner">
+          <div class="banner-title">🎉 新用户专享</div>
+          <div class="banner-desc">完善技能档案，额外获得50技能币</div>
+          <div class="banner-btn">立即领取</div>
+          <div class="banner-icon">
+            <i class="fas fa-gift"></i>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-magic"></i>
+            为你推荐
+          </div>
+          <div class="section-more">
+            换一批 <i class="fas fa-sync-alt"></i>
+          </div>
+        </div>
+
+        <div class="skill-cards">
+          <!-- Skill card 1 -->
+          <div class="skill-card" onclick="showSkillDetail()">
+            <div class="skill-card-header">
+              <div class="skill-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+              <div class="skill-user-info">
+                <div class="skill-user-name">
+                  小雨吉他
+                  <i class="fas fa-check-circle verify-badge"></i>
+                </div>
+                <div class="skill-user-desc">教龄3年 · 28次交换</div>
+              </div>
+              <div class="match-badge">
+                <i class="fas fa-bolt"></i>
+                92%匹配
+              </div>
+            </div>
+            <div class="skill-card-body">
+              <div class="skill-title">零基础吉他入门，30天弹唱</div>
+              <div class="skill-desc">从零基础开始，系统学习吉他基础和弦、节奏型、扫弦技巧，30天达到弹唱流行歌曲水平。</div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">吉他</span>
+              <span class="skill-tag">零基础</span>
+              <span class="skill-tag">弹唱</span>
+            </div>
+            <div class="skill-card-footer">
+              <div class="skill-price free">
+                <i class="fas fa-exchange-alt"></i>
+                可技能互换
+              </div>
+              <div class="skill-meta">
+                <span><i class="fas fa-star"></i> 4.9</span>
+                <span><i class="fas fa-map-marker-alt"></i> 2.3km</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill card 2 -->
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-avatar" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">张</div>
+              <div class="skill-user-info">
+                <div class="skill-user-name">
+                  张老师UI设计
+                  <i class="fas fa-check-circle verify-badge"></i>
+                </div>
+                <div class="skill-user-desc">大厂设计师 · 5年经验</div>
+              </div>
+              <div class="match-badge" style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: #2563EB;">
+                <i class="fas fa-arrow-right"></i>
+                单向匹配
+              </div>
+            </div>
+            <div class="skill-card-body">
+              <div class="skill-title">UI/UX设计系统课程</div>
+              <div class="skill-desc">Figma入门、设计规范、交互原型、用户体验设计思维，适合想转行或提升的同学。</div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">UI设计</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">交互设计</span>
+            </div>
+            <div class="skill-card-footer">
+              <div class="skill-price">
+                <i class="fas fa-coins"></i>
+                30 技能币/次
+              </div>
+              <div class="skill-meta">
+                <span><i class="fas fa-star"></i> 5.0</span>
+                <span><i class="fas fa-users"></i> 56人学过</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill card 3 -->
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">李</div>
+              <div class="skill-user-info">
+                <div class="skill-user-name">
+                  李老师英语
+                  <i class="fas fa-check-circle verify-badge"></i>
+                </div>
+                <div class="skill-user-desc">英语专八 · 海归硕士</div>
+              </div>
+              <div class="match-badge">
+                <i class="fas fa-bolt"></i>
+                87%匹配
+              </div>
+            </div>
+            <div class="skill-card-body">
+              <div class="skill-title">英语口语一对一陪练</div>
+              <div class="skill-desc">日常口语、商务英语、雅思口语陪练，纠正发音，提升表达自信，随时随地约课。</div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">英语口语</span>
+              <span class="skill-tag">雅思</span>
+              <span class="skill-tag">商务英语</span>
+            </div>
+            <div class="skill-card-footer">
+              <div class="skill-price free">
+                <i class="fas fa-exchange-alt"></i>
+                可技能互换
+              </div>
+              <div class="skill-meta">
+                <span><i class="fas fa-star"></i> 4.8</span>
+                <span><i class="fas fa-headset"></i> 线上</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 20px;"></div>
+      </div>
+
+      <!-- Discover page -->
+      <div class="page" id="page-discover">
+        <div class="discover-tabs">
+          <div class="discover-tab active">全部</div>
+          <div class="discover-tab">能教的</div>
+          <div class="discover-tab">想学的</div>
+          <div class="discover-tab">附近</div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-tag active">
+            综合排序 <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="filter-tag">线上</div>
+          <div class="filter-tag">线下</div>
+          <div class="filter-tag">可互换</div>
+          <div class="filter-tag">价格</div>
+          <div class="filter-tag">距离</div>
+        </div>
+
+        <div class="skill-cards" style="padding-top: 8px;">
+          <div class="skill-card" onclick="showSkillDetail()">
+            <div class="skill-card-header">
+              <div class="skill-avatar" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">王</div>
+              <div class="skill-user-info">
+                <div class="skill-user-name">
+                  小王摄影
+                  <i class="fas fa-check-circle verify-badge"></i>
+                </div>
+                <div class="skill-user-desc">自由摄影师 · 4年经验</div>
+              </div>
+            </div>
+            <div class="skill-card-body">
+              <div class="skill-title">人像摄影入门到进阶</div>
+              <div class="skill-desc">相机基础操作、构图技巧、光线运用、后期修图全流程教学。</div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">摄影</span>
+              <span class="skill-tag">人像</span>
+              <span class="skill-tag">后期修图</span>
+            </div>
+            <div class="skill-card-footer">
+              <div class="skill-price free">
+                <i class="fas fa-exchange-alt"></i>
+                可技能互换
+              </div>
+              <div class="skill-meta">
+                <span><i class="fas fa-star"></i> 4.9</span>
+                <span><i class="fas fa-map-marker-alt"></i> 1.5km</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-avatar" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">陈</div>
+              <div class="skill-user-info">
+                <div class="skill-user-name">
+                  陈老师Python
+                </div>
+                <div class="skill-user-desc">后端开发 · 6年经验</div>
+              </div>
+            </div>
+            <div class="skill-card-body">
+              <div class="skill-title">Python编程零基础入门</div>
+              <div class="skill-desc">从零开始学Python，变量、循环、函数、面向对象，实战项目驱动学习。</div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">编程入门</span>
+              <span class="skill-tag">零基础</span>
+            </div>
+            <div class="skill-card-footer">
+              <div class="skill-price">
+                <i class="fas fa-coins"></i>
+                25 技能币/次
+              </div>
+              <div class="skill-meta">
+                <span><i class="fas fa-star"></i> 4.7</span>
+                <span><i class="fas fa-users"></i> 89人学过</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">林</div>
+              <div class="skill-user-info">
+                <div class="skill-user-name">
+                  小林舞蹈
+                  <i class="fas fa-check-circle verify-badge"></i>
+                </div>
+                <div class="skill-user-desc">街舞老师 · 7年舞龄</div>
+              </div>
+            </div>
+            <div class="skill-card-body">
+              <div class="skill-title">爵士舞/K-pop舞蹈教学</div>
+              <div class="skill-desc">零基础也能学！从基础律动开始，一步步学会热门韩舞和爵士舞。</div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">爵士舞</span>
+              <span class="skill-tag">K-pop</span>
+              <span class="skill-tag">零基础</span>
+            </div>
+            <div class="skill-card-footer">
+              <div class="skill-price free">
+                <i class="fas fa-exchange-alt"></i>
+                可技能互换
+              </div>
+              <div class="skill-meta">
+                <span><i class="fas fa-star"></i> 5.0</span>
+                <span><i class="fas fa-map-marker-alt"></i> 3.2km</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-avatar" style="background: linear-gradient(135deg, #06B6D4, #22D3EE);">赵</div>
+              <div class="skill-user-info">
+                <div class="skill-user-name">
+                  小赵日语
+                </div>
+                <div class="skill-user-desc">N1满分 · 日企工作3年</div>
+              </div>
+            </div>
+            <div class="skill-card-body">
+              <div class="skill-title">日语N2备考冲刺班</div>
+              <div class="skill-desc">系统梳理N2语法、词汇、听力、阅读，助你一次通过考试。</div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">日语</span>
+              <span class="skill-tag">N2</span>
+              <span class="skill-tag">考级</span>
+            </div>
+            <div class="skill-card-footer">
+              <div class="skill-price">
+                <i class="fas fa-coins"></i>
+                35 技能币/次
+              </div>
+              <div class="skill-meta">
+                <span><i class="fas fa-star"></i> 4.9</span>
+                <span><i class="fas fa-headset"></i> 线上</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 20px;"></div>
+      </div>
+
+      <!-- Community page (feed) -->
+      <div class="page" id="page-community">
+        <div class="sub-page-header" style="position: sticky; top: 0; z-index: 10;">
+          <div class="sub-page-back"></div>
+          <div class="sub-page-title">学习社区</div>
+          <div class="sub-page-right"></div>
+        </div>
+
+        <div class="discover-tabs" style="position: static;">
+          <div class="discover-tab active">关注</div>
+          <div class="discover-tab">推荐</div>
+          <div class="discover-tab">热门</div>
+        </div>
+
+        <div class="feed-card">
+          <div class="feed-header">
+            <div class="feed-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+            <div class="feed-user-info">
+              <div class="feed-username">小雨吉他</div>
+              <div class="feed-time">2小时前 · 吉他</div>
+            </div>
+          </div>
+          <div class="feed-content">
+            今天新收的学生太有天赋了！第二节课就能弹《小星星》了 🎸 果然兴趣是最好的老师，想学吉他的小伙伴快来找我呀～
+          </div>
+          <div class="feed-tags">
+            <span class="feed-tag">#吉他教学</span>
+            <span class="feed-tag">#零基础入门</span>
+          </div>
+          <div class="feed-actions">
+            <div class="feed-action"><i class="far fa-heart"></i> 36</div>
+            <div class="feed-action"><i class="far fa-comment"></i> 8</div>
+            <div class="feed-action"><i class="fas fa-share-alt"></i> 分享</div>
+          </div>
+        </div>
+
+        <div class="feed-card">
+          <div class="feed-header">
+            <div class="feed-avatar" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">张</div>
+            <div class="feed-user-info">
+              <div class="feed-username">张老师UI设计</div>
+              <div class="feed-time">5小时前 · UI设计</div>
+            </div>
+          </div>
+          <div class="feed-content">
+            分享一个超实用的Figma技巧！用组件属性快速搭建响应式设计，效率提升200% ✨ 想学设计的同学可以关注我，定期分享干货～
+          </div>
+          <div class="feed-images">
+            <div class="feed-img"></div>
+            <div class="feed-img"></div>
+            <div class="feed-img"></div>
+          </div>
+          <div class="feed-tags">
+            <span class="feed-tag">#Figma技巧</span>
+            <span class="feed-tag">#UI设计</span>
+            <span class="feed-tag">#设计干货</span>
+          </div>
+          <div class="feed-actions">
+            <div class="feed-action"><i class="far fa-heart"></i> 128</div>
+            <div class="feed-action"><i class="far fa-comment"></i> 24</div>
+            <div class="feed-action"><i class="fas fa-share-alt"></i> 分享</div>
+          </div>
+        </div>
+
+        <div class="feed-card">
+          <div class="feed-header">
+            <div class="feed-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">小</div>
+            <div class="feed-user-info">
+              <div class="feed-username">小明同学</div>
+              <div class="feed-time">昨天 · 学习打卡</div>
+            </div>
+          </div>
+          <div class="feed-content">
+            📅 学习吉他第7天打卡！<br>
+            今天学会了C大调和G大调的转换，虽然手指还很疼，但终于能弹简单的和弦了！感谢小雨老师的耐心指导，继续加油 💪
+          </div>
+          <div class="feed-tags">
+            <span class="feed-tag">#30天吉他挑战</span>
+            <span class="feed-tag">#学习打卡</span>
+            <span class="feed-tag">#以技会友</span>
+          </div>
+          <div class="feed-actions">
+            <div class="feed-action"><i class="far fa-heart"></i> 56</div>
+            <div class="feed-action"><i class="far fa-comment"></i> 12</div>
+            <div class="feed-action"><i class="fas fa-share-alt"></i> 分享</div>
+          </div>
+        </div>
+
+        <div style="height: 20px;"></div>
+      </div>
+
+      <!-- Message page -->
+      <div class="page" id="page-message">
+        <div class="sub-page-header">
+          <div class="sub-page-back"></div>
+          <div class="sub-page-title">消息</div>
+          <div class="sub-page-right"></div>
+        </div>
+
+        <div class="msg-list">
+          <div class="msg-item" onclick="showChatPage()">
+            <div class="msg-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">
+              小
+              <span class="badge">2</span>
+            </div>
+            <div class="msg-content">
+              <div class="msg-top">
+                <span class="msg-name">小雨吉他</span>
+                <span class="msg-time">10:30</span>
+              </div>
+              <div class="msg-preview">好的，那我们就定在明天下午3点线上上课～</div>
+            </div>
+          </div>
+
+          <div class="msg-item">
+            <div class="msg-avatar" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">
+              张
+            </div>
+            <div class="msg-content">
+              <div class="msg-top">
+                <span class="msg-name">张老师UI设计</span>
+                <span class="msg-time">昨天</span>
+              </div>
+              <div class="msg-preview">作业我看了，整体很不错，有几个小地方可以优化下...</div>
+            </div>
+          </div>
+
+          <div class="msg-item">
+            <div class="msg-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">
+              系
+              <span class="badge">3</span>
+            </div>
+            <div class="msg-content">
+              <div class="msg-top">
+                <span class="msg-name">系统通知</span>
+                <span class="msg-time">昨天</span>
+              </div>
+              <div class="msg-preview">您的"Python入门"交换请求已被对方接受！</div>
+            </div>
+          </div>
+
+          <div class="msg-item">
+            <div class="msg-avatar" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">
+              王
+            </div>
+            <div class="msg-content">
+              <div class="msg-top">
+                <span class="msg-name">小王摄影</span>
+                <span class="msg-time">昨天</span>
+              </div>
+              <div class="msg-preview">好呀好呀，周末有空可以一起去公园拍照～</div>
+            </div>
+          </div>
+
+          <div class="msg-item">
+            <div class="msg-avatar" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">
+              陈
+            </div>
+            <div class="msg-content">
+              <div class="msg-top">
+                <span class="msg-name">陈老师Python</span>
+                <span class="msg-time">2天前</span>
+              </div>
+              <div class="msg-preview">下节课我们开始讲函数的概念，记得提前预习一下哦</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 20px;"></div>
+      </div>
+
+      <!-- Profile page -->
+      <div class="page" id="page-profile">
+        <div class="profile-header">
+          <div class="profile-top">
+            <div class="profile-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-info">
+              <div class="profile-name">
+                小明同学
+                <i class="fas fa-check-circle" style="font-size: 14px; opacity: 0.9;"></i>
+              </div>
+              <div class="profile-id">ID: 10086</div>
+            </div>
+            <div class="profile-edit">
+              <i class="fas fa-edit" style="font-size: 11px; margin-right: 4px;"></i>
+              编辑
+            </div>
+          </div>
+          <div class="profile-stats">
+            <div class="profile-stat">
+              <div class="profile-stat-num">6</div>
+              <div class="profile-stat-label">已交换</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num">12</div>
+              <div class="profile-stat-label">关注</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num">28</div>
+              <div class="profile-stat-label">粉丝</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num">4.8</div>
+              <div class="profile-stat-label">信誉分</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wallet-card">
+          <div class="wallet-balance">
+            <div class="wallet-left">
+              <div class="wallet-icon">
+                <i class="fas fa-coins"></i>
+              </div>
+              <div>
+                <div class="wallet-amount">128</div>
+                <div class="wallet-amount-label">技能币余额</div>
+              </div>
+            </div>
+          </div>
+          <div class="wallet-actions">
+            <div class="wallet-btn primary">
+              <i class="fas fa-plus"></i> 赚技能币
+            </div>
+            <div class="wallet-btn">
+              <i class="fas fa-history"></i> 明细
+            </div>
+            <div class="wallet-btn">
+              <i class="fas fa-gift"></i> 兑换
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-item">
+            <div class="menu-icon purple"><i class="fas fa-chalkboard-teacher"></i></div>
+            <span class="menu-text">我能教的</span>
+            <span class="menu-arrow"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-icon blue"><i class="fas fa-graduation-cap"></i></div>
+            <span class="menu-text">我想学的</span>
+            <span class="menu-arrow"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-icon green"><i class="fas fa-list-check"></i></div>
+            <span class="menu-text">我的交换</span>
+            <span class="menu-arrow"><i class="fas fa-chevron-right"></i></span>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-item">
+            <div class="menu-icon orange"><i class="fas fa-images"></i></div>
+            <span class="menu-text">我的作品</span>
+            <span class="menu-arrow"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-icon pink"><i class="fas fa-heart"></i></div>
+            <span class="menu-text">我的收藏</span>
+            <span class="menu-arrow"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-icon purple"><i class="fas fa-medal"></i></div>
+            <span class="menu-text">成就勋章</span>
+            <span class="menu-arrow"><i class="fas fa-chevron-right"></i></span>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-item">
+            <div class="menu-icon gray"><i class="fas fa-cog"></i></div>
+            <span class="menu-text">设置</span>
+            <span class="menu-arrow"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-icon gray"><i class="fas fa-question-circle"></i></div>
+            <span class="menu-text">帮助与反馈</span>
+            <span class="menu-arrow"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="menu-item">
+            <div class="menu-icon gray"><i class="fas fa-info-circle"></i></div>
+            <span class="menu-text">关于我们</span>
+            <span class="menu-arrow"><i class="fas fa-chevron-right"></i></span>
+          </div>
+        </div>
+
+        <div style="height: 20px;"></div>
+      </div>
+
+      <!-- Skill detail page (sub-page) -->
+      <div class="page" id="page-skill-detail">
+        <div class="detail-header">
+          <div class="detail-back" onclick="goBackToHome()">
+            <i class="fas fa-arrow-left"></i>
+          </div>
+          <div class="detail-title">技能详情</div>
+          <div class="detail-action">
+            <i class="far fa-heart"></i>
+          </div>
+        </div>
+
+        <div class="detail-user-section">
+          <div class="detail-user-info">
+            <div class="detail-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+            <div class="detail-user-text">
+              <div class="detail-username">
+                小雨吉他
+                <i class="fas fa-check-circle" style="color: var(--primary); font-size: 14px;"></i>
+              </div>
+              <div class="detail-user-meta">
+                <span class="detail-rating"><i class="fas fa-star"></i> 4.9 分</span>
+                <span>28次交换</span>
+                <span>教龄3年</span>
+              </div>
+            </div>
+            <div class="detail-follow-btn">+ 关注</div>
+          </div>
+        </div>
+
+        <div class="detail-content-section">
+          <div class="detail-skill-title">零基础吉他入门，30天弹唱</div>
+          <div class="detail-skill-tags">
+            <span class="skill-tag">吉他</span>
+            <span class="skill-tag">零基础</span>
+            <span class="skill-tag">弹唱</span>
+            <span class="skill-tag">民谣</span>
+          </div>
+          <div class="detail-skill-desc">
+            【适合人群】<br>
+            完全零基础的吉他爱好者，喜欢民谣、流行歌曲，想自弹自唱的同学。<br><br>
+            【课程内容】<br>
+            1. 吉他基础构造与持琴姿势<br>
+            2. 右手基础指法与节奏型<br>
+            3. 左手按弦技巧与基础和弦<br>
+            4. 常用和弦转换练习<br>
+            5. 扫弦技巧<br>
+            6. 简单弹唱曲目学习<br><br>
+            【学习效果】<br>
+            30天达到能够弹唱5-10首流行歌曲的水平，掌握吉他自学能力，为后续进阶打下坚实基础。
+          </div>
+          <div class="detail-info-grid">
+            <div class="detail-info-item">
+              <div class="detail-info-label">课程时长</div>
+              <div class="detail-info-value">60分钟/次</div>
+            </div>
+            <div class="detail-info-item">
+              <div class="detail-info-label">授课方式</div>
+              <div class="detail-info-value">线上 / 线下</div>
+            </div>
+            <div class="detail-info-item">
+              <div class="detail-info-label">可约时间</div>
+              <div class="detail-info-value">周末全天</div>
+            </div>
+            <div class="detail-info-item">
+              <div class="detail-info-label">位置距离</div>
+              <div class="detail-info-value">2.3km</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <div class="detail-section-title">
+            <i class="fas fa-star" style="color: var(--accent);"></i>
+            学员评价 (18)
+          </div>
+          <div class="review-item">
+            <div class="review-header">
+              <div class="review-avatar" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">阿</div>
+              <span class="review-name">阿杰同学</span>
+              <span class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+            </div>
+            <div class="review-text">
+              小雨老师特别有耐心！我是完全零基础，手指打不开，老师一点点教，现在终于能弹简单的歌了，超有成就感！
+            </div>
+          </div>
+          <div class="review-item">
+            <div class="review-header">
+              <div class="review-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">喵</div>
+              <span class="review-name">喵喵爱唱歌</span>
+              <span class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+            </div>
+            <div class="review-text">
+              老师教得特别系统，从基础开始循序渐进，还会根据我的进度调整内容，推荐推荐！
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 100px;"></div>
+
+        <!-- Bottom action bar -->
+        <div class="bottom-action">
+          <div class="action-price">
+            <div class="action-price-num">
+              <i class="fas fa-exchange-alt"></i>
+              可技能互换
+            </div>
+            <div class="action-price-label">或 20技能币/次</div>
+          </div>
+          <div class="action-chat" onclick="showChatPage()">
+            <i class="fas fa-comment"></i>
+          </div>
+          <div class="action-btn">发起交换</div>
+        </div>
+      </div>
+
+      <!-- Chat page (sub-page) -->
+      <div class="page" id="page-chat">
+        <div class="chat-header">
+          <div class="chat-back" onclick="goBackToMessage()">
+            <i class="fas fa-arrow-left"></i>
+          </div>
+          <div class="chat-user-info">
+            <div class="chat-avatar-sm" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+            <div>
+              <div class="chat-user-name">小雨吉他</div>
+              <div class="chat-user-status"><i class="fas fa-circle"></i> 在线</div>
+            </div>
+          </div>
+          <div class="chat-more">
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </div>
+
+        <div class="chat-messages">
+          <div class="chat-date">今天 10:20</div>
+
+          <div class="msg-bubble received">
+            <div class="msg-bubble-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+            <div class="msg-bubble-content">
+              <div class="msg-bubble-text">你好呀～看到你想学吉他，有基础吗？</div>
+              <div class="msg-bubble-time">10:21</div>
+            </div>
+          </div>
+
+          <div class="msg-bubble sent">
+            <div class="msg-bubble-avatar" style="background: linear-gradient(135deg, #6366F1, #818CF8);">我</div>
+            <div class="msg-bubble-content">
+              <div class="msg-bubble-text">完全零基础，一直想学但没找到合适的老师 😂</div>
+              <div class="msg-bubble-time">10:22</div>
+            </div>
+          </div>
+
+          <div class="msg-bubble received">
+            <div class="msg-bubble-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+            <div class="msg-bubble-content">
+              <div class="msg-bubble-text">没关系呀，我有很多零基础的学生～你平时什么时候方便上课呀？</div>
+              <div class="msg-bubble-time">10:24</div>
+            </div>
+          </div>
+
+          <div class="msg-bubble sent">
+            <div class="msg-bubble-avatar" style="background: linear-gradient(135deg, #6366F1, #818CF8);">我</div>
+            <div class="msg-bubble-content">
+              <div class="msg-bubble-text">我平时上班，周末下午一般有空。对了，我可以教你Python编程，不知道你有没有兴趣互换？</div>
+              <div class="msg-bubble-time">10:26</div>
+            </div>
+          </div>
+
+          <div class="msg-bubble received">
+            <div class="msg-bubble-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+            <div class="msg-bubble-content">
+              <div class="msg-bubble-text">
+                <div class="exchange-card">
+                  <div class="exchange-title">
+                    <i class="fas fa-exchange-alt"></i>
+                    技能交换邀请
+                  </div>
+                  <div class="exchange-info">
+                    吉他教学 ↔ Python编程<br>
+                    时间：周六下午3点<br>
+                    方式：线上视频
+                  </div>
+                  <div class="exchange-actions">
+                    <div class="exchange-btn decline">拒绝</div>
+                    <div class="exchange-btn accept">接受</div>
+                  </div>
+                </div>
+              </div>
+              <div class="msg-bubble-time">10:28</div>
+            </div>
+          </div>
+
+          <div class="msg-bubble received">
+            <div class="msg-bubble-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+            <div class="msg-bubble-content">
+              <div class="msg-bubble-text">太好了！我一直想学编程来着！那我们可以互换～我给你发个交换邀请</div>
+              <div class="msg-bubble-time">10:29</div>
+            </div>
+          </div>
+
+          <div class="msg-bubble sent">
+            <div class="msg-bubble-avatar" style="background: linear-gradient(135deg, #6366F1, #818CF8);">我</div>
+            <div class="msg-bubble-content">
+              <div class="msg-bubble-text">好的，那就定在明天下午3点线上上课～</div>
+              <div class="msg-bubble-time">10:30</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat input -->
+        <div class="chat-input-bar">
+          <div class="chat-input-icon"><i class="far fa-smile"></i></div>
+          <input class="chat-input" placeholder="输入消息...">
+          <div class="chat-send"><i class="fas fa-paper-plane"></i></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom nav -->
+    <div class="bottom-nav">
+      <div class="nav-item active" data-page="home" onclick="switchPage('home')">
+        <i class="fas fa-home"></i>
+        <span>首页</span>
+      </div>
+      <div class="nav-item" data-page="discover" onclick="switchPage('discover')">
+        <i class="fas fa-search"></i>
+        <span>发现</span>
+      </div>
+      <div class="nav-item publish-btn" onclick="showPublishModal()">
+        <div class="publish-icon">
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
+      <div class="nav-item" data-page="community" onclick="switchPage('community')">
+        <i class="fas fa-users"></i>
+        <span>社区</span>
+      </div>
+      <div class="nav-item" data-page="profile" onclick="switchPage('profile')">
+        <i class="fas fa-user"></i>
+        <span>我的</span>
+      </div>
+    </div>
+
+    <!-- Publish modal -->
+    <div class="publish-modal" id="publishModal" onclick="closePublishModal(event)">
+      <div class="publish-sheet">
+        <div class="publish-sheet-header">
+          <div class="publish-sheet-title">发布</div>
+          <div class="publish-close" onclick="closePublishModal()">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+        <div class="publish-options">
+          <div class="publish-option teach">
+            <div class="publish-option-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <div class="publish-option-title">我能教</div>
+            <div class="publish-option-desc">分享你的技能</div>
+          </div>
+          <div class="publish-option learn">
+            <div class="publish-option-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="publish-option-title">我想学</div>
+            <div class="publish-option-desc">寻找学习伙伴</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let currentPage = 'home';
+  let previousPage = 'home';
+
+  function switchPage(pageName) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.remove('active');
+    });
+    
+    // Show target page
+    document.getElementById('page-' + pageName).classList.add('active');
+    
+    // Update nav
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    const navItem = document.querySelector('.nav-item[data-page="' + pageName + '"]');
+    if (navItem) {
+      navItem.classList.add('active');
+    }
+    
+    // Reset scroll
+    document.getElementById('appContent').scrollTop = 0;
+    
+    previousPage = currentPage;
+    currentPage = pageName;
+  }
+
+  function showSkillDetail() {
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.remove('active');
+    });
+    document.getElementById('page-skill-detail').classList.add('active');
+    document.getElementById('appContent').scrollTop = 0;
+  }
+
+  function goBackToHome() {
+    switchPage('home');
+  }
+
+  function showChatPage() {
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.remove('active');
+    });
+    document.getElementById('page-chat').classList.add('active');
+    document.getElementById('appContent').scrollTop = 0;
+  }
+
+  function goBackToMessage() {
+    switchPage('message');
+  }
+
+  function showPublishModal() {
+    document.getElementById('publishModal').classList.add('show');
+  }
+
+  function closePublishModal(event) {
+    if (!event || event.target === document.getElementById('publishModal')) {
+      document.getElementById('publishModal').classList.remove('show');
+    }
+  }
+
+  // Discover tabs
+  document.querySelectorAll('.discover-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const parent = this.parentElement;
+      parent.querySelectorAll('.discover-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Filter tags
+  document.querySelectorAll('.filter-tag').forEach(tag => {
+    tag.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  });
+</script>
+
+</body>
+</html>
