@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>发现技能 - 技换空间</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo" onclick="location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-exchange-alt"></i></div>
+      <span class="logo-text">技换空间</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html"><i class="fas fa-home"></i> 首页</a>
+      <a class="nav-link active" href="discover.html"><i class="fas fa-search"></i> 发现</a>
+      <a class="nav-link" href="community.html"><i class="fas fa-users"></i> 社区</a>
+      <a class="nav-link" href="message.html"><i class="fas fa-comment-dots"></i> 消息</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="搜索技能、用户...">
+      </div>
+      <button class="btn btn-primary" onclick="location.href='publish.html'">
+        <i class="fas fa-plus"></i> 发布
+      </button>
+      <div class="nav-avatar" onclick="location.href='profile.html'">明</div>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <div class="section-header">
+    <div>
+      <div class="section-title"><i class="fas fa-search"></i> 发现技能</div>
+      <div class="section-subtitle">找到最适合你的学习伙伴</div>
+    </div>
+  </div>
+
+  <div class="discover-layout">
+    <!-- 侧边栏筛选 -->
+    <aside class="discover-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title"><i class="fas fa-layer-group" style="color: var(--primary);"></i> 技能分类</div>
+        <div class="filter-options">
+          <div class="filter-option active"><input type="checkbox" checked> 全部分类</div>
+          <div class="filter-option"><input type="checkbox"> 音乐乐器 (1,286)</div>
+          <div class="filter-option"><input type="checkbox"> 编程开发 (2,048)</div>
+          <div class="filter-option"><input type="checkbox"> 设计创意 (892)</div>
+          <div class="filter-option"><input type="checkbox"> 外语学习 (1,567)</div>
+          <div class="filter-option"><input type="checkbox"> 摄影后期 (654)</div>
+          <div class="filter-option"><input type="checkbox"> 运动健身 (723)</div>
+          <div class="filter-option"><input type="checkbox"> 美食烹饪 (445)</div>
+          <div class="filter-option"><input type="checkbox"> 手工DIY (328)</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title"><i class="fas fa-exchange-alt" style="color: var(--secondary);"></i> 交换方式</div>
+        <div class="filter-options">
+          <div class="filter-option active"><input type="checkbox" checked> 全部</div>
+          <div class="filter-option"><input type="checkbox"> 技能互换</div>
+          <div class="filter-option"><input type="checkbox"> 技能币支付</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title"><i class="fas fa-map-marker-alt" style="color: var(--danger);"></i> 授课方式</div>
+        <div class="filter-options">
+          <div class="filter-option active"><input type="checkbox" checked> 线上线下均可</div>
+          <div class="filter-option"><input type="checkbox"> 线上授课</div>
+          <div class="filter-option"><input type="checkbox"> 线下面授</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title"><i class="fas fa-coins" style="color: var(--accent);"></i> 价格区间</div>
+        <div class="price-range">
+          <input type="number" placeholder="最低">
+          <span style="color: var(--text-light);">-</span>
+          <input type="number" placeholder="最高">
+        </div>
+        <div class="filter-options" style="margin-top: 12px;">
+          <div class="filter-option">免费</div>
+          <div class="filter-option">10技能币以下</div>
+          <div class="filter-option">10-30技能币</div>
+          <div class="filter-option">30-50技能币</div>
+          <div class="filter-option">50技能币以上</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title"><i class="fas fa-star" style="color: var(--accent);"></i> 评分筛选</div>
+        <div class="filter-options">
+          <div class="filter-option"><input type="checkbox"> 4.5分以上</div>
+          <div class="filter-option"><input type="checkbox"> 4.0分以上</div>
+          <div class="filter-option"><input type="checkbox"> 3.5分以上</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 主内容 -->
+    <div class="discover-main">
+      <div class="discover-toolbar">
+        <div class="discover-tabs">
+          <div class="discover-tab active">综合排序</div>
+          <div class="discover-tab">好评优先</div>
+          <div class="discover-tab">价格最低</div>
+          <div class="discover-tab">距离最近</div>
+          <div class="discover-tab">最新发布</div>
+        </div>
+        <div class="discover-sort"><span>共 2,856 条结果</span></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card" onclick="location.href='skill-detail.html'">
+          <div class="skill-card-header">
+            <div class="skill-avatar" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">王</div>
+            <div class="skill-user-info">
+              <div class="skill-user-name">小王摄影 <i class="fas fa-check-circle verify-badge"></i></div>
+              <div class="skill-user-desc">自由摄影师 · 4年经验</div>
+            </div>
+          </div>
+          <div class="skill-card-body">
+            <div class="skill-title">人像摄影入门到进阶</div>
+            <div class="skill-desc">相机基础操作、构图技巧、光线运用、后期修图全流程教学。</div>
+            <div class="skill-tags">
+              <span class="skill-tag">摄影</span>
+              <span class="skill-tag">人像</span>
+              <span class="skill-tag">后期修图</span>
+            </div>
+          </div>
+          <div class="skill-card-footer">
+            <div class="skill-price exchange"><i class="fas fa-exchange-alt"></i> 可技能互换</div>
+            <div class="skill-meta">
+              <span class="skill-rating"><i class="fas fa-star"></i> 4.9</span>
+              <span><i class="fas fa-map-marker-alt"></i> 1.5km</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card" onclick="location.href='skill-detail.html'">
+          <div class="skill-card-header">
+            <div class="skill-avatar" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">陈</div>
+            <div class="skill-user-info">
+              <div class="skill-user-name">陈老师Python</div>
+              <div class="skill-user-desc">后端开发 · 6年经验</div>
+            </div>
+          </div>
+          <div class="skill-card-body">
+            <div class="skill-title">Python编程零基础入门</div>
+            <div class="skill-desc">从零开始学Python，变量、循环、函数、面向对象，实战项目驱动学习。</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">编程入门</span>
+              <span class="skill-tag">零基础</span>
+            </div>
+          </div>
+          <div class="skill-card-footer">
+            <div class="skill-price coin"><i class="fas fa-coins"></i> 25 技能币/次</div>
+            <div class="skill-meta">
+              <span class="skill-rating"><i class="fas fa-star"></i> 4.7</span>
+              <span><i class="fas fa-users"></i> 89人学过</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card" onclick="location.href='skill-detail.html'">
+          <div class="skill-card-header">
+            <div class="skill-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">林</div>
+            <div class="skill-user-info">
+              <div class="skill-user-name">小林舞蹈 <i class="fas fa-check-circle verify-badge"></i></div>
+              <div class="skill-user-desc">街舞老师 · 7年舞龄</div>
+            </div>
+          </div>
+          <div class="skill-card-body">
+            <div class="skill-title">爵士舞/K-pop舞蹈教学</div>
+            <div class="skill-desc">零基础也能学！从基础律动开始，一步步学会热门韩舞和爵士舞。</div>
+            <div class="skill-tags">
+              <span class="skill-tag">爵士舞</span>
+              <span class="skill-tag">K-pop</span>
+              <span class="skill-tag">零基础</span>
+            </div>
+          </div>
+          <div class="skill-card-footer">
+            <div class="skill-price exchange"><i class="fas fa-exchange-alt"></i> 可技能互换</div>
+            <div class="skill-meta">
+              <span class="skill-rating"><i class="fas fa-star"></i> 5.0</span>
+              <span><i class="fas fa-map-marker-alt"></i> 3.2km</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card" onclick="location.href='skill-detail.html'">
+          <div class="skill-card-header">
+            <div class="skill-avatar" style="background: linear-gradient(135deg, #06B6D4, #22D3EE);">赵</div>
+            <div class="skill-user-info">
+              <div class="skill-user-name">小赵日语</div>
+              <div class="skill-user-desc">N1满分 · 日企工作3年</div>
+            </div>
+          </div>
+          <div class="skill-card-body">
+            <div class="skill-title">日语N2备考冲刺班</div>
+            <div class="skill-desc">系统梳理N2语法、词汇、听力、阅读，助你一次通过考试。</div>
+            <div class="skill-tags">
+              <span class="skill-tag">日语</span>
+              <span class="skill-tag">N2</span>
+              <span class="skill-tag">考级</span>
+            </div>
+          </div>
+          <div class="skill-card-footer">
+            <div class="skill-price coin"><i class="fas fa-coins"></i> 35 技能币/次</div>
+            <div class="skill-meta">
+              <span class="skill-rating"><i class="fas fa-star"></i> 4.9</span>
+              <span><i class="fas fa-headset"></i> 线上</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card" onclick="location.href='skill-detail.html'">
+          <div class="skill-card-header">
+            <div class="skill-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">周</div>
+            <div class="skill-user-info">
+              <div class="skill-user-name">周老师健身 <i class="fas fa-check-circle verify-badge"></i></div>
+              <div class="skill-user-desc">私人教练 · 6年经验</div>
+            </div>
+          </div>
+          <div class="skill-card-body">
+            <div class="skill-title">健身减脂私教一对一</div>
+            <div class="skill-desc">量身定制训练计划和饮食方案，科学减脂增肌，告别无效健身。</div>
+            <div class="skill-tags">
+              <span class="skill-tag">健身</span>
+              <span class="skill-tag">减脂</span>
+              <span class="skill-tag">增肌</span>
+            </div>
+          </div>
+          <div class="skill-card-footer">
+            <div class="skill-price exchange"><i class="fas fa-exchange-alt"></i> 可技能互换</div>
+            <div class="skill-meta">
+              <span class="skill-rating"><i class="fas fa-star"></i> 4.8</span>
+              <span><i class="fas fa-map-marker-alt"></i> 2.8km</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card" onclick="location.href='skill-detail.html'">
+          <div class="skill-card-header">
+            <div class="skill-avatar" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">孙</div>
+            <div class="skill-user-info">
+              <div class="skill-user-name">小厨神阿孙</div>
+              <div class="skill-user-desc">美食博主 · 烘焙达人</div>
+            </div>
+          </div>
+          <div class="skill-card-body">
+            <div class="skill-title">家庭烘焙零基础入门</div>
+            <div class="skill-desc">从饼干、蛋糕到面包，一步步教你做出美味的烘焙甜品。</div>
+            <div class="skill-tags">
+              <span class="skill-tag">烘焙</span>
+              <span class="skill-tag">蛋糕</span>
+              <span class="skill-tag">面包</span>
+            </div>
+          </div>
+          <div class="skill-card-footer">
+            <div class="skill-price coin"><i class="fas fa-coins"></i> 20 技能币/次</div>
+            <div class="skill-meta">
+              <span class="skill-rating"><i class="fas fa-star"></i> 4.9</span>
+              <span><i class="fas fa-map-marker-alt"></i> 4.1km</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; padding: 32px 0;">
+        <button class="btn btn-secondary">加载更多</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3><i class="fas fa-exchange-alt"></i> 技换空间</h3>
+      <p>以技会友，双向成长。<br>让每个人的技能都能产生价值，让学习不再是一个人的孤军奋战。</p>
+      <div class="footer-social">
+        <a><i class="fab fa-weixin"></i></a>
+        <a><i class="fab fa-weibo"></i></a>
+        <a><i class="fab fa-zhihu"></i></a>
+        <a><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>产品</h4>
+      <ul>
+        <li><a href="discover.html">发现技能</a></li>
+        <li><a href="publish.html">发布技能</a></li>
+        <li><a href="community.html">学习社区</a></li>
+        <li><a>技能币中心</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>关于</h4>
+      <ul>
+        <li><a>关于我们</a></li>
+        <li><a>加入我们</a></li>
+        <li><a>联系我们</a></li>
+        <li><a>合作伙伴</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>帮助</h4>
+      <ul>
+        <li><a>新手指南</a></li>
+        <li><a>常见问题</a></li>
+        <li><a>用户协议</a></li>
+        <li><a>隐私政策</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 技换空间. All rights reserved. 以技会友，双向成长
+  </div>
+</footer>
+
+</body>
+</html>

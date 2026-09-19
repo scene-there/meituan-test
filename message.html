@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>消息 - 技换空间</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo" onclick="location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-exchange-alt"></i></div>
+      <span class="logo-text">技换空间</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html"><i class="fas fa-home"></i> 首页</a>
+      <a class="nav-link" href="discover.html"><i class="fas fa-search"></i> 发现</a>
+      <a class="nav-link" href="community.html"><i class="fas fa-users"></i> 社区</a>
+      <a class="nav-link active" href="message.html"><i class="fas fa-comment-dots"></i> 消息</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="搜索技能、用户...">
+      </div>
+      <button class="btn btn-primary" onclick="location.href='publish.html'">
+        <i class="fas fa-plus"></i> 发布
+      </button>
+      <div class="nav-avatar" onclick="location.href='profile.html'">明</div>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <div class="message-layout">
+    <!-- 会话列表 -->
+    <div class="message-sidebar">
+      <div class="message-sidebar-header">
+        <h3>消息</h3>
+        <i class="fas fa-plus" style="cursor: pointer;" title="发起新对话"></i>
+      </div>
+      <div class="message-search">
+        <div class="message-search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" class="message-search-input" placeholder="搜索聊天记录...">
+        </div>
+      </div>
+      <div class="message-list">
+        <div class="message-item active">
+          <div class="message-item-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">
+            小
+            <div class="message-item-badge">2</div>
+          </div>
+          <div class="message-item-content">
+            <div class="message-item-top">
+              <span class="message-item-name">小雨吉他</span>
+              <span class="message-item-time">刚刚</span>
+            </div>
+            <div class="message-item-preview">好的没问题，那我们就定在周六下午2点...</div>
+          </div>
+        </div>
+        <div class="message-item">
+          <div class="message-item-avatar" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">
+            张
+          </div>
+          <div class="message-item-content">
+            <div class="message-item-top">
+              <span class="message-item-name">张老师UI设计</span>
+              <span class="message-item-time">今天 14:23</span>
+            </div>
+            <div class="message-item-preview">Figma的安装包我已经发给你了，记得先装好哦</div>
+          </div>
+        </div>
+        <div class="message-item">
+          <div class="message-item-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">
+            李
+            <div class="message-item-badge">5</div>
+          </div>
+          <div class="message-item-content">
+            <div class="message-item-top">
+              <span class="message-item-name">李老师英语</span>
+              <span class="message-item-time">昨天</span>
+            </div>
+            <div class="message-item-preview">下次我们可以练习一下商务英语的话题～</div>
+          </div>
+        </div>
+        <div class="message-item">
+          <div class="message-item-avatar" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">
+            王
+          </div>
+          <div class="message-item-content">
+            <div class="message-item-top">
+              <span class="message-item-name">小王摄影</span>
+              <span class="message-item-time">昨天</span>
+            </div>
+            <div class="message-item-preview">周末有空一起去拍银杏吗？秋天的银杏超美</div>
+          </div>
+        </div>
+        <div class="message-item">
+          <div class="message-item-avatar" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">
+            陈
+          </div>
+          <div class="message-item-content">
+            <div class="message-item-top">
+              <span class="message-item-name">陈老师Python</span>
+              <span class="message-item-time">周一</span>
+            </div>
+            <div class="message-item-preview">上次留的作业完成了吗？有问题随时问我</div>
+          </div>
+        </div>
+        <div class="message-item">
+          <div class="message-item-avatar" style="background: linear-gradient(135deg, #EF4444, #F87171);">
+            林
+          </div>
+          <div class="message-item-content">
+            <div class="message-item-top">
+              <span class="message-item-name">小林舞蹈</span>
+              <span class="message-item-time">上周</span>
+            </div>
+            <div class="message-item-preview">好的！那下节课见～</div>
+          </div>
+        </div>
+        <div class="message-item">
+          <div class="message-item-avatar" style="background: linear-gradient(135deg, #06B6D4, #22D3EE);">
+            赵
+          </div>
+          <div class="message-item-content">
+            <div class="message-item-top">
+              <span class="message-item-name">小赵日语</span>
+              <span class="message-item-time">上周</span>
+            </div>
+            <div class="message-item-preview">日语五十音图要多背多写，熟能生巧</div>
+          </div>
+        </div>
+        <div class="message-item">
+          <div class="message-item-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">
+            周
+          </div>
+          <div class="message-item-content">
+            <div class="message-item-top">
+              <span class="message-item-name">周老师健身</span>
+              <span class="message-item-time">2周前</span>
+            </div>
+            <div class="message-item-preview">训练计划已经调整好了，注意饮食配合</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 聊天区域 -->
+    <div class="message-main">
+      <div class="message-header">
+        <div class="message-header-info">
+          <div class="message-header-name">小雨吉他</div>
+          <div class="message-header-status">在线</div>
+        </div>
+        <div class="message-header-actions">
+          <i class="fas fa-phone" title="语音通话"></i>
+          <i class="fas fa-video" title="视频通话"></i>
+          <i class="fas fa-ellipsis-v" title="更多"></i>
+        </div>
+      </div>
+
+      <div class="chat-area" id="chatArea">
+        <div class="chat-date">今天</div>
+
+        <div class="chat-message received">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div>
+            <div class="chat-bubble">你好呀～我看到你想学吉他，有什么基础吗？</div>
+            <div class="chat-time">14:20</div>
+          </div>
+        </div>
+
+        <div class="chat-message sent">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">明</div>
+          <div>
+            <div class="chat-bubble">你好！我完全零基础，从来没碰过吉他，能学会吗？</div>
+            <div class="chat-time">14:22</div>
+          </div>
+        </div>
+
+        <div class="chat-message received">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div>
+            <div class="chat-bubble">当然可以啦！我的学员大部分都是零基础的，我会从最基础的开始教起，慢慢来～</div>
+            <div class="chat-time">14:23</div>
+          </div>
+        </div>
+
+        <div class="chat-message received">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div>
+            <div class="chat-bubble">你有吉他吗？还是需要我推荐一下购买建议？</div>
+            <div class="chat-time">14:23</div>
+          </div>
+        </div>
+
+        <div class="chat-message sent">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">明</div>
+          <div>
+            <div class="chat-bubble">我还没有买呢，正好想请教一下买什么比较好，预算不要太高，先入门就行</div>
+            <div class="chat-time">14:25</div>
+          </div>
+        </div>
+
+        <div class="chat-message received">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div>
+            <div class="chat-bubble">没问题！入门的话推荐卡马或者雅马哈的合板吉他，大概500-1000左右，性价比很高。等你确定继续学了再换好琴～</div>
+            <div class="chat-time">14:26</div>
+          </div>
+        </div>
+
+        <div class="chat-message sent">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">明</div>
+          <div>
+            <div class="chat-bubble">好的，谢谢！那上课的话，你是线上教学还是线下呢？</div>
+            <div class="chat-time">14:28</div>
+          </div>
+        </div>
+
+        <div class="chat-message received">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div>
+            <div class="chat-bubble">都可以哦～线上的话用腾讯视频，方便灵活；线下的话我在海淀这边有工作室，看你方便。</div>
+            <div class="chat-time">14:29</div>
+          </div>
+        </div>
+
+        <div class="chat-message sent">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">明</div>
+          <div>
+            <div class="chat-bubble">我也在海淀，那线下会不会效果更好一点？</div>
+            <div class="chat-time">14:30</div>
+          </div>
+        </div>
+
+        <div class="chat-message received">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div>
+            <div class="chat-bubble">线下肯定更直观呀，我可以直接纠正你的手型和姿势，入门会更快。你平时什么时候方便？</div>
+            <div class="chat-time">14:31</div>
+          </div>
+        </div>
+
+        <div class="chat-message sent">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">明</div>
+          <div>
+            <div class="chat-bubble">周末都可以，周六下午怎么样？</div>
+            <div class="chat-time">14:32</div>
+          </div>
+        </div>
+
+        <div class="chat-message received">
+          <div class="chat-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div>
+            <div class="chat-bubble">好的没问题，那我们就定在周六下午2点，第一次课60分钟，你觉得可以吗？</div>
+            <div class="chat-time">14:33</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 输入区域 -->
+      <div class="chat-input-area">
+        <div class="chat-toolbar">
+          <i class="far fa-smile" title="表情"></i>
+          <i class="fas fa-image" title="图片"></i>
+          <i class="fas fa-file" title="文件"></i>
+          <i class="fas fa-microphone" title="语音"></i>
+        </div>
+        <div class="chat-input-row">
+          <textarea class="chat-input" id="chatInput" placeholder="输入消息..." rows="1"></textarea>
+          <button class="chat-send-btn" onclick="sendMessage()">发送</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+// 自动滚动到底部
+const chatArea = document.getElementById('chatArea');
+chatArea.scrollTop = chatArea.scrollHeight;
+
+// 发送消息
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+
+  const msgHtml = `
+    <div class="chat-message sent">
+      <div class="chat-avatar" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">明</div>
+      <div>
+        <div class="chat-bubble">${text}</div>
+        <div class="chat-time">${time}</div>
+      </div>
+    </div>
+  `;
+  chatArea.insertAdjacentHTML('beforeend', msgHtml);
+  chatArea.scrollTop = chatArea.scrollHeight;
+  input.value = '';
+
+  // 模拟对方回复
+  setTimeout(() => {
+    const replies = [
+      '好的，收到～',
+      '没问题！',
+      '好的好的',
+      '嗯嗯，我知道了',
+      '可以的',
+    ];
+    const reply = replies[Math.floor(Math.random() * replies.length)];
+    const replyHtml = `
+      <div class="chat-message received">
+        <div class="chat-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+        <div>
+          <div class="chat-bubble">${reply}</div>
+          <div class="chat-time">${time}</div>
+        </div>
+      </div>
+    `;
+    chatArea.insertAdjacentHTML('beforeend', replyHtml);
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }, 1000);
+}
+
+// 回车发送
+document.getElementById('chatInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+
+// 会话列表切换
+document.querySelectorAll('.message-item').forEach(item => {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.message-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

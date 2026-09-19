@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>发布技能 - 技换空间</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo" onclick="location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-exchange-alt"></i></div>
+      <span class="logo-text">技换空间</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html"><i class="fas fa-home"></i> 首页</a>
+      <a class="nav-link" href="discover.html"><i class="fas fa-search"></i> 发现</a>
+      <a class="nav-link" href="community.html"><i class="fas fa-users"></i> 社区</a>
+      <a class="nav-link" href="message.html"><i class="fas fa-comment-dots"></i> 消息</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="搜索技能、用户...">
+      </div>
+      <button class="btn btn-primary" onclick="location.href='publish.html'">
+        <i class="fas fa-plus"></i> 发布
+      </button>
+      <div class="nav-avatar" onclick="location.href='profile.html'">明</div>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <div class="publish-layout">
+    <div class="section-header" style="flex-direction: column; align-items: flex-start;">
+      <div class="section-title"><i class="fas fa-plus-circle"></i> 发布技能</div>
+      <div class="section-subtitle">分享你的技能，帮助他人成长，同时收获新知识</div>
+    </div>
+
+    <div class="publish-card">
+      <!-- 类型选择 -->
+      <div class="publish-tabs">
+        <div class="publish-tab active"><i class="fas fa-chalkboard-teacher" style="margin-right: 6px;"></i> 我能教的</div>
+        <div class="publish-tab"><i class="fas fa-graduation-cap" style="margin-right: 6px;"></i> 我想学的</div>
+      </div>
+
+      <form id="publishForm">
+        <!-- 技能分类 -->
+        <div class="form-group">
+          <label class="form-label">技能分类 <span class="required">*</span></label>
+          <select class="form-select">
+            <option value="">请选择技能分类</option>
+            <option value="music">音乐乐器</option>
+            <option value="code">编程开发</option>
+            <option value="design">设计创意</option>
+            <option value="language">外语学习</option>
+            <option value="photo">摄影后期</option>
+            <option value="sport">运动健身</option>
+            <option value="food">美食烹饪</option>
+            <option value="diy">手工DIY</option>
+            <option value="other">其他</option>
+          </select>
+        </div>
+
+        <!-- 技能标题 -->
+        <div class="form-group">
+          <label class="form-label">技能标题 <span class="required">*</span></label>
+          <input type="text" class="form-input" placeholder="例如：零基础吉他入门，30天弹唱">
+          <div class="form-hint">好的标题能吸引更多学员，建议突出亮点和学习成果</div>
+        </div>
+
+        <!-- 技能描述 -->
+        <div class="form-group">
+          <label class="form-label">技能描述 <span class="required">*</span></label>
+          <textarea class="form-textarea" rows="6" placeholder="请详细描述你的技能，包括教学内容、适合人群、学习效果等..."></textarea>
+          <div class="form-hint">内容越详细，越能获得学员信任，建议至少200字</div>
+        </div>
+
+        <!-- 授课方式 -->
+        <div class="form-group">
+          <label class="form-label">授课方式 <span class="required">*</span></label>
+          <div class="type-options">
+            <div class="type-option active">
+              <div class="type-option-icon" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">
+                <i class="fas fa-laptop"></i>
+              </div>
+              <div class="type-option-title">线上授课</div>
+              <div class="type-option-desc">通过视频通话远程教学</div>
+            </div>
+            <div class="type-option">
+              <div class="type-option-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="type-option-title">线下面授</div>
+              <div class="type-option-desc">面对面实地教学</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 价格与时长 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">单次时长 <span class="required">*</span></label>
+            <select class="form-select">
+              <option>30分钟</option>
+              <option selected>60分钟</option>
+              <option>90分钟</option>
+              <option>120分钟</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">技能币价格 <span class="required">*</span></label>
+            <input type="number" class="form-input" placeholder="请输入价格" value="25">
+          </div>
+        </div>
+
+        <!-- 是否接受互换 -->
+        <div class="form-group">
+          <label class="form-label">技能互换</label>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: var(--primary-50); border-radius: var(--radius);">
+            <input type="checkbox" id="exchange" checked style="width: 18px; height: 18px; cursor: pointer;">
+            <label for="exchange" style="cursor: pointer; font-size: 14px; color: var(--primary-dark); font-weight: 500;">
+              接受技能互换，用我的技能换别人的技能
+            </label>
+          </div>
+          <div class="form-hint">开启后，其他用户可以用TA的技能和你交换，不用花费技能币</div>
+        </div>
+
+        <!-- 想学习的技能 -->
+        <div class="form-group">
+          <label class="form-label">你想学习什么技能？（可选）</label>
+          <div class="tag-input-container">
+            <span class="skill-tag"><i class="fas fa-times"></i></span>
+            <input type="text" class="tag-input" placeholder="输入后按回车添加">
+          </div>
+          <div class="form-hint">添加你想学的技能，系统会自动为你推荐匹配的用户</div>
+        </div>
+
+        <!-- 技能标签 -->
+        <div class="form-group">
+          <label class="form-label">技能标签 <span class="required">*</span></label>
+          <div class="tag-input-container">
+            <span class="skill-tag">吉他 <i class="fas fa-times"></i></span>
+            <span class="skill-tag">零基础 <i class="fas fa-times"></i></span>
+            <span class="skill-tag">弹唱 <i class="fas fa-times"></i></span>
+            <input type="text" class="tag-input" placeholder="输入后按回车添加，最多5个">
+          </div>
+          <div class="form-hint">添加相关标签，让你的技能更容易被搜索到，建议添加3-5个标签</div>
+        </div>
+
+        <!-- 提交按钮 -->
+        <div class="publish-footer">
+          <button type="button" class="btn btn-outline" onclick="location.href='index.html'">
+            <i class="fas fa-arrow-left"></i> 返回
+          </button>
+          <div style="display: flex; gap: 12px;">
+            <button type="button" class="btn btn-outline">
+              <i class="far fa-file"></i> 保存草稿
+            </button>
+            <button type="button" class="btn btn-primary" onclick="alert('发布成功！')">
+              <i class="fas fa-paper-plane"></i> 发布技能
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3><i class="fas fa-exchange-alt"></i> 技换空间</h3>
+      <p>以技会友，双向成长。<br>让每个人的技能都能产生价值，让学习不再是一个人的孤军奋战。</p>
+      <div class="footer-social">
+        <a><i class="fab fa-weixin"></i></a>
+        <a><i class="fab fa-weibo"></i></a>
+        <a><i class="fab fa-zhihu"></i></a>
+        <a><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>产品</h4>
+      <ul>
+        <li><a href="discover.html">发现技能</a></li>
+        <li><a href="publish.html">发布技能</a></li>
+        <li><a href="community.html">学习社区</a></li>
+        <li><a>技能币中心</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>关于</h4>
+      <ul>
+        <li><a>关于我们</a></li>
+        <li><a>加入我们</a></li>
+        <li><a>联系我们</a></li>
+        <li><a>合作伙伴</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>帮助</h4>
+      <ul>
+        <li><a>新手指南</a></li>
+        <li><a>常见问题</a></li>
+        <li><a>用户协议</a></li>
+        <li><a>隐私政策</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 技换空间. All rights reserved. 以技会友，双向成长
+  </div>
+</footer>
+
+<script>
+// 类型选项切换
+document.querySelectorAll('.type-option').forEach(option => {
+  option.addEventListener('click', function() {
+    this.parentElement.querySelectorAll('.type-option').forEach(o => o.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// 发布类型切换
+document.querySelectorAll('.publish-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.publish-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

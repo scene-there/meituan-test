@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>零基础吉他入门 - 技换空间</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo" onclick="location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-exchange-alt"></i></div>
+      <span class="logo-text">技换空间</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html"><i class="fas fa-home"></i> 首页</a>
+      <a class="nav-link active" href="discover.html"><i class="fas fa-search"></i> 发现</a>
+      <a class="nav-link" href="community.html"><i class="fas fa-users"></i> 社区</a>
+      <a class="nav-link" href="message.html"><i class="fas fa-comment-dots"></i> 消息</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="搜索技能、用户...">
+      </div>
+      <button class="btn btn-primary" onclick="location.href='publish.html'">
+        <i class="fas fa-plus"></i> 发布
+      </button>
+      <div class="nav-avatar" onclick="location.href='profile.html'">明</div>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <div class="detail-layout">
+    <div class="detail-main">
+      <!-- 基本信息 -->
+      <div class="detail-card">
+        <div class="detail-header">
+          <div class="detail-header-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div class="detail-header-info">
+            <h1 class="detail-title">零基础吉他入门，30天弹唱</h1>
+            <div class="detail-user-row">
+              <span class="name">小雨吉他</span>
+              <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+              <span style="color: var(--text-light);">已认证</span>
+              <span style="color: var(--text-light);">·</span>
+              <span style="color: var(--text-light); font-size: 13px;">教龄3年 · 28次成功交换</span>
+            </div>
+            <div class="detail-meta-row">
+              <span class="rating"><i class="fas fa-star"></i> 4.9 分</span>
+              <span><i class="fas fa-users"></i> 128人学过</span>
+              <span><i class="fas fa-map-marker-alt"></i> 北京市海淀区 · 2.3km</span>
+              <span><i class="fas fa-headset"></i> 线上线下均可</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; padding-top: 20px; border-top: 1px solid var(--border);">
+          <span class="match-badge high" style="padding: 8px 16px; font-size: 13px;"><i class="fas fa-bolt"></i> 与你的匹配度 92%</span>
+          <span class="match-badge" style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #059669; padding: 8px 16px; font-size: 13px;"><i class="fas fa-exchange-alt"></i> 支持技能互换</span>
+        </div>
+      </div>
+
+      <!-- 技能介绍 -->
+      <div class="detail-card">
+        <h3 class="detail-section-title"><i class="fas fa-file-alt"></i> 技能介绍</h3>
+        <p class="detail-content-text">
+          你是否一直梦想着能够抱着吉他弹唱自己喜欢的歌曲？却又担心零基础学不会、报班太贵、自学太难坚持？
+          我是小雨，有3年吉他教学经验，累计帮助200+零基础学员成功入门。我会用最简单易懂的方式，
+          带你从零开始，一步步掌握吉他弹唱的核心技巧。
+        </p>
+        <p class="detail-content-text">
+          课程采用循序渐进的教学方式，从持琴姿势、基础乐理、和弦指法、节奏型到扫弦技巧，
+          每节课都有明确的目标和练习任务。30天后，你将能够弹唱至少10首流行歌曲，
+          甚至可以自己进行简单的编曲和创作。
+        </p>
+
+        <h4 style="font-size: 15px; margin: 20px 0 12px; color: var(--text);">适合人群</h4>
+        <ul style="color: var(--text-secondary); font-size: 14px; line-height: 2; margin-bottom: 20px; padding-left: 20px;">
+          <li>完全零基础，从未接触过吉他的音乐爱好者</li>
+          <li>自学过一段时间但基础不扎实的同学</li>
+          <li>想培养一项新爱好，丰富业余生活的朋友</li>
+          <li>学生党、上班族，时间有限但想学一门乐器的人</li>
+        </ul>
+
+        <h4 style="font-size: 15px; margin: 20px 0 12px; color: var(--text);">技能标签</h4>
+        <div class="detail-tag-list">
+          <span class="skill-tag">吉他</span>
+          <span class="skill-tag">零基础</span>
+          <span class="skill-tag">弹唱</span>
+          <span class="skill-tag">民谣</span>
+          <span class="skill-tag">入门</span>
+          <span class="skill-tag">30天速成</span>
+        </div>
+      </div>
+
+      <!-- 课程大纲 -->
+      <div class="detail-card">
+        <h3 class="detail-section-title"><i class="fas fa-list-ol"></i> 课程大纲</h3>
+        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">共8节课，每节课60分钟，建议每周1-2节课</p>
+        <div class="outline-list">
+          <div class="outline-item">
+            <div class="outline-num">1</div>
+            <div class="outline-content">
+              <h4>认识吉他与基础乐理</h4>
+              <p>吉他构造介绍、持琴姿势、右手拨弦方法、基础乐理知识</p>
+            </div>
+          </div>
+          <div class="outline-item">
+            <div class="outline-num">2</div>
+            <div class="outline-content">
+              <h4>和弦入门与转换</h4>
+              <p>学习C、Am、F、G四个基础和弦，练习和弦转换技巧</p>
+            </div>
+          </div>
+          <div class="outline-item">
+            <div class="outline-num">3</div>
+            <div class="outline-content">
+              <h4>节奏型与扫弦</h4>
+              <p>学习分解和弦节奏型、扫弦技巧，节奏感训练</p>
+            </div>
+          </div>
+          <div class="outline-item">
+            <div class="outline-num">4</div>
+            <div class="outline-content">
+              <h4>第一首歌弹唱</h4>
+              <p>《小星星》《两只老虎》简单曲目弹唱练习</p>
+            </div>
+          </div>
+          <div class="outline-item">
+            <div class="outline-num">5</div>
+            <div class="outline-content">
+              <h4>更多和弦与节奏变化</h4>
+              <p>学习Dm、Em、Am7等和弦，掌握更多节奏型</p>
+            </div>
+          </div>
+          <div class="outline-item">
+            <div class="outline-num">6</div>
+            <div class="outline-content">
+              <h4>流行歌曲实战</h4>
+              <p>《成都》《同桌的你》等经典民谣弹唱教学</p>
+            </div>
+          </div>
+          <div class="outline-item">
+            <div class="outline-num">7</div>
+            <div class="outline-content">
+              <h4>转调与变调夹使用</h4>
+              <p>学习转调技巧、变调夹的正确使用方法</p>
+            </div>
+          </div>
+          <div class="outline-item">
+            <div class="outline-num">8</div>
+            <div class="outline-content">
+              <h4>综合演奏与进阶指导</h4>
+              <p>完整歌曲表演、学习路径规划、后续练习建议</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 评分评价 -->
+      <div class="detail-card">
+        <h3 class="detail-section-title"><i class="fas fa-star"></i> 学员评价</h3>
+        <div class="review-summary">
+          <div class="review-score">
+            <div class="review-score-num">4.9</div>
+            <div class="review-score-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <div class="review-score-count">共 86 条评价</div>
+          </div>
+          <div class="review-bars">
+            <div class="review-bar-row">
+              <span class="review-bar-label">5星</span>
+              <div class="review-bar"><div class="review-bar-fill" style="width: 72%;"></div></div>
+              <span class="review-bar-count">62</span>
+            </div>
+            <div class="review-bar-row">
+              <span class="review-bar-label">4星</span>
+              <div class="review-bar"><div class="review-bar-fill" style="width: 20%;"></div></div>
+              <span class="review-bar-count">17</span>
+            </div>
+            <div class="review-bar-row">
+              <span class="review-bar-label">3星</span>
+              <div class="review-bar"><div class="review-bar-fill" style="width: 6%;"></div></div>
+              <span class="review-bar-count">5</span>
+            </div>
+            <div class="review-bar-row">
+              <span class="review-bar-label">2星</span>
+              <div class="review-bar"><div class="review-bar-fill" style="width: 2%;"></div></div>
+              <span class="review-bar-count">2</span>
+            </div>
+            <div class="review-bar-row">
+              <span class="review-bar-label">1星</span>
+              <div class="review-bar"><div class="review-bar-fill" style="width: 0%;"></div></div>
+              <span class="review-bar-count">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-list">
+          <div class="review-item">
+            <div class="review-header">
+              <div class="review-avatar" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">王</div>
+              <div class="review-info">
+                <div class="review-name">小王同学</div>
+                <div class="review-meta">
+                  <span class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                  <span>·</span>
+                  <span>2024-01-15</span>
+                </div>
+              </div>
+            </div>
+            <div class="review-content">
+              小雨老师真的超级有耐心！作为一个完全零基础的小白，我一开始连琴都拿不稳，老师一步步教我，
+              从基础的持琴姿势到和弦转换，每一步都讲得特别清楚。现在我已经可以弹唱《成都》了，
+              真的太开心了！强烈推荐给想学吉他的朋友们～
+            </div>
+            <div class="review-tags">
+              <span class="review-tag">耐心细致</span>
+              <span class="review-tag">讲解清晰</span>
+              <span class="review-tag">进步明显</span>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <div class="review-header">
+              <div class="review-avatar" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">陈</div>
+              <div class="review-info">
+                <div class="review-name">陈思思</div>
+                <div class="review-meta">
+                  <span class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                  <span>·</span>
+                  <span>2024-01-08</span>
+                </div>
+              </div>
+            </div>
+            <div class="review-content">
+              课程安排很合理，从易到难循序渐进。老师会根据我的学习进度调整教学内容，
+              不会因为赶进度而让我跟不上。而且用技能互换的方式太划算了，
+              我用英语辅导换的吉他课，省了一大笔报班费哈哈。
+            </div>
+            <div class="review-tags">
+              <span class="review-tag">课程系统</span>
+              <span class="review-tag">性价比高</span>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <div class="review-header">
+              <div class="review-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">李</div>
+              <div class="review-info">
+                <div class="review-name">小李爱音乐</div>
+                <div class="review-meta">
+                  <span class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+                  <span>·</span>
+                  <span>2023-12-28</span>
+                </div>
+              </div>
+            </div>
+            <div class="review-content">
+              整体体验很不错，老师很专业也很负责。唯一的小建议是希望能多增加一些指弹的内容，
+              我个人更喜欢指弹而不是弹唱。不过课程质量还是很高的，收获很大！
+            </div>
+            <div class="review-tags">
+              <span class="review-tag">专业负责</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 侧栏 -->
+    <div class="detail-sidebar">
+      <div class="side-card">
+        <div class="side-price">
+          <span class="side-price-num">25</span>
+          <span class="side-price-unit">技能币/次</span>
+        </div>
+        <div class="side-exchange">
+          <i class="fas fa-exchange-alt"></i> 也支持技能互换，用你的技能免费学
+        </div>
+
+        <div class="side-form">
+          <div class="side-form-item">
+            <label class="side-form-label">授课方式</label>
+            <select class="side-form-input">
+              <option>线上视频教学</option>
+              <option>线下面对面教学</option>
+              <option>线上线下均可</option>
+            </select>
+          </div>
+          <div class="side-form-item">
+            <label class="side-form-label">预约时间</label>
+            <input type="date" class="side-form-input">
+          </div>
+          <div class="side-form-item">
+            <label class="side-form-label">留言（可选）</label>
+            <textarea class="side-form-input" rows="3" placeholder="告诉老师你的基础情况和学习目标..."></textarea>
+          </div>
+        </div>
+
+        <div class="side-btns">
+          <button class="btn btn-primary" onclick="location.href='message.html'">
+            <i class="fas fa-comment-dots"></i> 在线咨询
+          </button>
+          <button class="btn btn-secondary">
+            <i class="fas fa-calendar-check"></i> 立即预约
+          </button>
+          <button class="btn btn-outline">
+            <i class="far fa-heart"></i> 收藏
+          </button>
+        </div>
+
+        <div class="side-info-list">
+          <div class="side-info-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>平台担保，不满意可退款</span>
+          </div>
+          <div class="side-info-item">
+            <i class="fas fa-clock"></i>
+            <span>24小时内确认预约</span>
+          </div>
+          <div class="side-info-item">
+            <i class="fas fa-certificate"></i>
+            <span>实名认证 · 技能认证</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3><i class="fas fa-exchange-alt"></i> 技换空间</h3>
+      <p>以技会友，双向成长。<br>让每个人的技能都能产生价值，让学习不再是一个人的孤军奋战。</p>
+      <div class="footer-social">
+        <a><i class="fab fa-weixin"></i></a>
+        <a><i class="fab fa-weibo"></i></a>
+        <a><i class="fab fa-zhihu"></i></a>
+        <a><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>产品</h4>
+      <ul>
+        <li><a href="discover.html">发现技能</a></li>
+        <li><a href="publish.html">发布技能</a></li>
+        <li><a href="community.html">学习社区</a></li>
+        <li><a>技能币中心</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>关于</h4>
+      <ul>
+        <li><a>关于我们</a></li>
+        <li><a>加入我们</a></li>
+        <li><a>联系我们</a></li>
+        <li><a>合作伙伴</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>帮助</h4>
+      <ul>
+        <li><a>新手指南</a></li>
+        <li><a>常见问题</a></li>
+        <li><a>用户协议</a></li>
+        <li><a>隐私政策</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 技换空间. All rights reserved. 以技会友，双向成长
+  </div>
+</footer>
+
+</body>
+</html>

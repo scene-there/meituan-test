@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技换空间 - 以技会友，双向成长</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.hero-section {
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #8B5CF6 100%);
+  border-radius: var(--radius-xl);
+  padding: 64px 56px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.hero-content { position: relative; z-index: 1; max-width: 600px; }
+.hero-badge {
+  display: inline-block;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.hero-title { font-size: 44px; font-weight: 700; line-height: 1.3; margin-bottom: 16px; }
+.hero-desc { font-size: 17px; opacity: 0.9; margin-bottom: 32px; line-height: 1.8; }
+.hero-btns { display: flex; gap: 14px; }
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.hero-stat-num { font-size: 32px; font-weight: 700; margin-bottom: 4px; }
+.hero-stat-label { font-size: 14px; opacity: 0.85; }
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
+  margin-bottom: 48px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.feature-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  margin: 0 auto 18px;
+}
+.feature-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.feature-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo" onclick="location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-exchange-alt"></i></div>
+      <span class="logo-text">技换空间</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link active" href="index.html"><i class="fas fa-home"></i> 首页</a>
+      <a class="nav-link" href="discover.html"><i class="fas fa-search"></i> 发现</a>
+      <a class="nav-link" href="community.html"><i class="fas fa-users"></i> 社区</a>
+      <a class="nav-link" href="message.html"><i class="fas fa-comment-dots"></i> 消息</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="搜索技能、用户...">
+      </div>
+      <button class="btn btn-primary" onclick="location.href='publish.html'">
+        <i class="fas fa-plus"></i> 发布
+      </button>
+      <div class="nav-avatar" onclick="location.href='profile.html'">明</div>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+
+  <!-- Hero区域 -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-sparkles"></i> 全新技能学习方式</div>
+      <h1 class="hero-title">以技会友，双向成长</h1>
+      <p class="hero-desc">
+        用你擅长的，换你想学的。在这里，每个人都是老师，也都是学生。<br>
+        加入技换空间，开启零成本的技能学习之旅。
+      </p>
+      <div class="hero-btns">
+        <button class="btn btn-white" onclick="location.href='discover.html'" style="padding: 14px 32px; font-size: 15px;">
+          开始探索 <i class="fas fa-arrow-right"></i>
+        </button>
+        <button class="btn btn-outline-white" onclick="location.href='publish.html'" style="padding: 14px 32px; font-size: 15px;">
+          <i class="fas fa-bullhorn"></i> 发布技能
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">12,856</div>
+          <div class="hero-stat-label">技能达人</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">3,428</div>
+          <div class="hero-stat-label">技能分类</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">98.6%</div>
+          <div class="hero-stat-label">好评率</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 热门分类 -->
+  <section style="margin-bottom: 48px;">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><i class="fas fa-th-large"></i> 热门分类</div>
+        <div class="section-subtitle">找到你感兴趣的技能领域</div>
+      </div>
+      <a class="section-more" href="discover.html">查看全部分类 <i class="fas fa-chevron-right"></i></a>
+    </div>
+    <div class="category-grid">
+      <div class="category-card" onclick="location.href='discover.html'">
+        <div style="width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; margin: 0 auto 14px; background: linear-gradient(135deg, #EC4899, #F472B6);">
+          <i class="fas fa-music"></i>
+        </div>
+        <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px; text-align: center;">音乐乐器</div>
+        <div style="font-size: 12px; color: var(--text-light); text-align: center;">1,286 位达人</div>
+      </div>
+      <div class="category-card" onclick="location.href='discover.html'">
+        <div style="width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; margin: 0 auto 14px; background: linear-gradient(135deg, #3B82F6, #60A5FA);">
+          <i class="fas fa-code"></i>
+        </div>
+        <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px; text-align: center;">编程开发</div>
+        <div style="font-size: 12px; color: var(--text-light); text-align: center;">2,048 位达人</div>
+      </div>
+      <div class="category-card" onclick="location.href='discover.html'">
+        <div style="width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; margin: 0 auto 14px; background: linear-gradient(135deg, #8B5CF6, #A78BFA);">
+          <i class="fas fa-palette"></i>
+        </div>
+        <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px; text-align: center;">设计创意</div>
+        <div style="font-size: 12px; color: var(--text-light); text-align: center;">892 位达人</div>
+      </div>
+      <div class="category-card" onclick="location.href='discover.html'">
+        <div style="width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; margin: 0 auto 14px; background: linear-gradient(135deg, #10B981, #34D399);">
+          <i class="fas fa-language"></i>
+        </div>
+        <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px; text-align: center;">外语学习</div>
+        <div style="font-size: 12px; color: var(--text-light); text-align: center;">1,567 位达人</div>
+      </div>
+      <div class="category-card" onclick="location.href='discover.html'">
+        <div style="width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; margin: 0 auto 14px; background: linear-gradient(135deg, #F59E0B, #FBBF24);">
+          <i class="fas fa-camera"></i>
+        </div>
+        <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px; text-align: center;">摄影后期</div>
+        <div style="font-size: 12px; color: var(--text-light); text-align: center;">654 位达人</div>
+      </div>
+      <div class="category-card" onclick="location.href='discover.html'">
+        <div style="width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; margin: 0 auto 14px; background: linear-gradient(135deg, #EF4444, #F87171);">
+          <i class="fas fa-running"></i>
+        </div>
+        <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px; text-align: center;">运动健身</div>
+        <div style="font-size: 12px; color: var(--text-light); text-align: center;">723 位达人</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 为你推荐 -->
+  <section style="margin-bottom: 48px;">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><i class="fas fa-magic"></i> 为你推荐</div>
+        <div class="section-subtitle">基于你的技能档案智能匹配</div>
+      </div>
+      <a class="section-more" href="discover.html">查看更多 <i class="fas fa-chevron-right"></i></a>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card" onclick="location.href='skill-detail.html'">
+        <div class="skill-card-header">
+          <div class="skill-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div class="skill-user-info">
+            <div class="skill-user-name">小雨吉他 <i class="fas fa-check-circle verify-badge"></i></div>
+            <div class="skill-user-desc">教龄3年 · 28次交换</div>
+          </div>
+          <div class="match-badge high"><i class="fas fa-bolt"></i> 92%匹配</div>
+        </div>
+        <div class="skill-card-body">
+          <div class="skill-title">零基础吉他入门，30天弹唱</div>
+          <div class="skill-desc">从零基础开始，系统学习吉他基础和弦、节奏型、扫弦技巧，30天达到弹唱流行歌曲水平。</div>
+          <div class="skill-tags">
+            <span class="skill-tag">吉他</span>
+            <span class="skill-tag">零基础</span>
+            <span class="skill-tag">弹唱</span>
+          </div>
+        </div>
+        <div class="skill-card-footer">
+          <div class="skill-price exchange"><i class="fas fa-exchange-alt"></i> 可技能互换</div>
+          <div class="skill-meta">
+            <span class="skill-rating"><i class="fas fa-star"></i> 4.9</span>
+            <span><i class="fas fa-map-marker-alt"></i> 2.3km</span>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card" onclick="location.href='skill-detail.html'">
+        <div class="skill-card-header">
+          <div class="skill-avatar" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">张</div>
+          <div class="skill-user-info">
+            <div class="skill-user-name">张老师UI设计 <i class="fas fa-check-circle verify-badge"></i></div>
+            <div class="skill-user-desc">大厂设计师 · 5年经验</div>
+          </div>
+          <div class="match-badge single"><i class="fas fa-arrow-right"></i> 单向匹配</div>
+        </div>
+        <div class="skill-card-body">
+          <div class="skill-title">UI/UX设计系统课程</div>
+          <div class="skill-desc">Figma入门、设计规范、交互原型、用户体验设计思维，适合想转行或提升的同学。</div>
+          <div class="skill-tags">
+            <span class="skill-tag">UI设计</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">交互设计</span>
+          </div>
+        </div>
+        <div class="skill-card-footer">
+          <div class="skill-price coin"><i class="fas fa-coins"></i> 30 技能币/次</div>
+          <div class="skill-meta">
+            <span class="skill-rating"><i class="fas fa-star"></i> 5.0</span>
+            <span><i class="fas fa-users"></i> 56人学过</span>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card" onclick="location.href='skill-detail.html'">
+        <div class="skill-card-header">
+          <div class="skill-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">李</div>
+          <div class="skill-user-info">
+            <div class="skill-user-name">李老师英语 <i class="fas fa-check-circle verify-badge"></i></div>
+            <div class="skill-user-desc">英语专八 · 海归硕士</div>
+          </div>
+          <div class="match-badge high"><i class="fas fa-bolt"></i> 87%匹配</div>
+        </div>
+        <div class="skill-card-body">
+          <div class="skill-title">英语口语一对一陪练</div>
+          <div class="skill-desc">日常口语、商务英语、雅思口语陪练，纠正发音，提升表达自信，随时随地约课。</div>
+          <div class="skill-tags">
+            <span class="skill-tag">英语口语</span>
+            <span class="skill-tag">雅思</span>
+            <span class="skill-tag">商务英语</span>
+          </div>
+        </div>
+        <div class="skill-card-footer">
+          <div class="skill-price exchange"><i class="fas fa-exchange-alt"></i> 可技能互换</div>
+          <div class="skill-meta">
+            <span class="skill-rating"><i class="fas fa-star"></i> 4.8</span>
+            <span><i class="fas fa-headset"></i> 线上</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特色优势 -->
+  <section style="margin-bottom: 48px;">
+    <div class="section-header" style="justify-content: center; text-align: center; flex-direction: column;">
+      <div class="section-title" style="justify-content: center;"><i class="fas fa-gem"></i> 为什么选择技换空间</div>
+      <div class="section-subtitle">全新的技能学习体验，让成长不再孤单</div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">
+          <i class="fas fa-coins"></i>
+        </div>
+        <div class="feature-title">零成本学习</div>
+        <div class="feature-desc">用技能交换技能，不用花一分钱也能学到新本领，让你的每一份技能都产生价值。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #10B981, #059669);">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <div class="feature-title">双向成长</div>
+        <div class="feature-desc">教是最好的学。在教别人的过程中，你自己的技能也会得到巩固和提升。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="feature-title">以技会友</div>
+        <div class="feature-desc">因技能相识，因学习相知。在这里结识志同道合的朋友，拓展你的社交圈。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #3B82F6, #2563EB);">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="feature-title">安全保障</div>
+        <div class="feature-desc">实名认证+技能认证+信誉评价体系，平台担保交易，让交换更安心。</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3><i class="fas fa-exchange-alt"></i> 技换空间</h3>
+      <p>以技会友，双向成长。<br>让每个人的技能都能产生价值，让学习不再是一个人的孤军奋战。</p>
+      <div class="footer-social">
+        <a><i class="fab fa-weixin"></i></a>
+        <a><i class="fab fa-weibo"></i></a>
+        <a><i class="fab fa-zhihu"></i></a>
+        <a><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>产品</h4>
+      <ul>
+        <li><a href="discover.html">发现技能</a></li>
+        <li><a href="publish.html">发布技能</a></li>
+        <li><a href="community.html">学习社区</a></li>
+        <li><a>技能币中心</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>关于</h4>
+      <ul>
+        <li><a>关于我们</a></li>
+        <li><a>加入我们</a></li>
+        <li><a>联系我们</a></li>
+        <li><a>合作伙伴</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>帮助</h4>
+      <ul>
+        <li><a>新手指南</a></li>
+        <li><a>常见问题</a></li>
+        <li><a>用户协议</a></li>
+        <li><a>隐私政策</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 技换空间. All rights reserved. 以技会友，双向成长
+  </div>
+</footer>
+
+</body>
+</html>

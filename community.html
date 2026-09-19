@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社区 - 技换空间</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo" onclick="location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-exchange-alt"></i></div>
+      <span class="logo-text">技换空间</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html"><i class="fas fa-home"></i> 首页</a>
+      <a class="nav-link" href="discover.html"><i class="fas fa-search"></i> 发现</a>
+      <a class="nav-link active" href="community.html"><i class="fas fa-users"></i> 社区</a>
+      <a class="nav-link" href="message.html"><i class="fas fa-comment-dots"></i> 消息</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="搜索技能、用户...">
+      </div>
+      <button class="btn btn-primary" onclick="location.href='publish.html'">
+        <i class="fas fa-plus"></i> 发布
+      </button>
+      <div class="nav-avatar" onclick="location.href='profile.html'">明</div>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <div class="section-header">
+    <div>
+      <div class="section-title"><i class="fas fa-users"></i> 学习社区</div>
+      <div class="section-subtitle">分享学习心得，交流技能经验</div>
+    </div>
+    <button class="btn btn-primary">
+      <i class="fas fa-pen"></i> 发布动态
+    </button>
+  </div>
+
+  <div class="community-layout">
+    <div class="community-main">
+      <!-- 标签分类 -->
+      <div style="background: var(--card); border-radius: var(--radius-lg); padding: 16px 24px; border: 1px solid var(--border); margin-bottom: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <span style="padding: 6px 16px; background: var(--primary); color: white; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer;">推荐</span>
+        <span style="padding: 6px 16px; background: var(--bg-gray); color: var(--text-secondary); border-radius: 20px; font-size: 14px; cursor: pointer; transition: var(--transition);">学习打卡</span>
+        <span style="padding: 6px 16px; background: var(--bg-gray); color: var(--text-secondary); border-radius: 20px; font-size: 14px; cursor: pointer; transition: var(--transition);">技能分享</span>
+        <span style="padding: 6px 16px; background: var(--bg-gray); color: var(--text-secondary); border-radius: 20px; font-size: 14px; cursor: pointer; transition: var(--transition);">经验交流</span>
+        <span style="padding: 6px 16px; background: var(--bg-gray); color: var(--text-secondary); border-radius: 20px; font-size: 14px; cursor: pointer; transition: var(--transition);">组队学习</span>
+        <span style="padding: 6px 16px; background: var(--bg-gray); color: var(--text-secondary); border-radius: 20px; font-size: 14px; cursor: pointer; transition: var(--transition);">作品展示</span>
+      </div>
+
+      <!-- 帖子列表 -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div class="post-info">
+            <div class="post-author">小雨吉他 <i class="fas fa-check-circle" style="color: var(--primary); font-size: 13px;"></i></div>
+            <div class="post-meta">2小时前 · <span class="post-category-tag">技能分享</span></div>
+          </div>
+        </div>
+        <h3 class="post-title">零基础学吉他，30天我做到了！分享我的入门心得</h3>
+        <p class="post-content">
+          很多朋友问我零基础能不能学会吉他，答案是肯定的！我教过的学员里最大的有60岁，
+          现在都能弹唱好几首歌了。今天跟大家分享几个入门阶段最重要的技巧：
+          <br><br>
+          1. 手指疼痛是正常的，坚持一周就好了<br>
+          2. 和弦转换要慢练，不要急于求成<br>
+          3. 每天练20分钟比周末练3小时效果好<br>
+          4. 找一首你特别喜欢的歌作为目标，会更有动力
+          <br><br>
+          想学吉他的朋友欢迎一起交流～
+        </p>
+        <div class="post-footer">
+          <span class="post-footer-item"><i class="far fa-eye"></i> 1,234</span>
+          <span class="post-footer-item"><i class="far fa-thumbs-up"></i> 86</span>
+          <span class="post-footer-item"><i class="far fa-comment"></i> 24</span>
+          <span class="post-footer-item"><i class="fas fa-share-alt"></i> 分享</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">张</div>
+          <div class="post-info">
+            <div class="post-author">张老师UI设计 <i class="fas fa-check-circle" style="color: var(--primary); font-size: 13px;"></i></div>
+            <div class="post-meta">今天 10:23 · <span class="post-category-tag">学习打卡</span></div>
+          </div>
+        </div>
+        <h3 class="post-title">打卡第15天 | 今天学习了Figma的组件和变体功能</h3>
+        <p class="post-content">
+          继续我的UI设计学习之路！今天终于搞懂了Figma的组件和变体功能，真的太强大了！
+          以前做按钮的不同状态要手动改，现在用变体一键切换，效率提升太多了。
+          推荐想学UI的小伙伴一定要掌握这个功能～
+        </p>
+        <div class="post-images">
+          <div class="post-image" style="background: linear-gradient(135deg, #E0E7FF, #C7D2FE);"></div>
+          <div class="post-image" style="background: linear-gradient(135deg, #FCE7F3, #FBCFE8);"></div>
+          <div class="post-image" style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0);"></div>
+        </div>
+        <div class="post-footer">
+          <span class="post-footer-item"><i class="far fa-eye"></i> 567</span>
+          <span class="post-footer-item"><i class="far fa-thumbs-up"></i> 42</span>
+          <span class="post-footer-item"><i class="far fa-comment"></i> 8</span>
+          <span class="post-footer-item"><i class="fas fa-share-alt"></i> 分享</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">李</div>
+          <div class="post-info">
+            <div class="post-author">小李爱音乐</div>
+            <div class="post-meta">昨天 16:45 · <span class="post-category-tag">组队学习</span></div>
+          </div>
+        </div>
+        <h3 class="post-title">有没有想学吉他的小伙伴一起组队？互相监督进步更快！</h3>
+        <p class="post-content">
+          自学吉他太难坚持了，一个人练总是偷懒。想建一个吉他学习打卡群，
+          每天在群里打卡练习，互相交流问题，有老师也可以偶尔来指导一下。
+          有没有想加入的小伙伴？评论区扣1～
+        </p>
+        <div class="post-footer">
+          <span class="post-footer-item"><i class="far fa-eye"></i> 345</span>
+          <span class="post-footer-item"><i class="far fa-thumbs-up"></i> 28</span>
+          <span class="post-footer-item"><i class="far fa-comment"></i> 56</span>
+          <span class="post-footer-item"><i class="fas fa-share-alt"></i> 分享</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">王</div>
+          <div class="post-info">
+            <div class="post-author">小王摄影 <i class="fas fa-check-circle" style="color: var(--primary); font-size: 13px;"></i></div>
+            <div class="post-meta">昨天 09:12 · <span class="post-category-tag">作品展示</span></div>
+          </div>
+        </div>
+        <h3 class="post-title">秋天的北京太美了！分享一组昨天拍的银杏大道</h3>
+        <p class="post-content">
+          昨天去钓鱼台银杏大道拍照，人虽然多但景色真的太美了！金黄色的银杏叶配上蓝天，
+          随手一拍都是大片。分享几张我拍的照片，欢迎摄影爱好者一起交流～
+        </p>
+        <div class="post-images">
+          <div class="post-image" style="background: linear-gradient(135deg, #FEF3C7, #FDE68A);"></div>
+          <div class="post-image" style="background: linear-gradient(135deg, #FFEDD5, #FED7AA);"></div>
+          <div class="post-image" style="background: linear-gradient(135deg, #FEF9C3, #FEF08A);"></div>
+        </div>
+        <div class="post-footer">
+          <span class="post-footer-item"><i class="far fa-eye"></i> 892</span>
+          <span class="post-footer-item"><i class="far fa-thumbs-up"></i> 126</span>
+          <span class="post-footer-item"><i class="far fa-comment"></i> 18</span>
+          <span class="post-footer-item"><i class="fas fa-share-alt"></i> 分享</span>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">陈</div>
+          <div class="post-info">
+            <div class="post-author">小陈编程</div>
+            <div class="post-meta">前天 · <span class="post-category-tag">经验交流</span></div>
+          </div>
+        </div>
+        <h3 class="post-title">转行程序员半年了，说说我的真实感受</h3>
+        <p class="post-content">
+          去年这个时候我还是个运营，现在已经是一名前端开发了。很多朋友问我难不难、
+          怎么学的，今天跟大家分享一下我的转行经验：
+          <br><br>
+          1. 选对方向很重要，前端入门相对友好<br>
+          2. 不要只看视频，一定要多写代码<br>
+          3. 做项目是最好的学习方式<br>
+          4. 可以找个老师带一带，少走很多弯路
+          <br><br>
+          有想转码的朋友欢迎交流，我也是从零基础过来的～
+        </p>
+        <div class="post-footer">
+          <span class="post-footer-item"><i class="far fa-eye"></i> 2,345</span>
+          <span class="post-footer-item"><i class="far fa-thumbs-up"></i> 189</span>
+          <span class="post-footer-item"><i class="far fa-comment"></i> 67</span>
+          <span class="post-footer-item"><i class="fas fa-share-alt"></i> 分享</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 侧栏 -->
+    <div class="community-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">
+          <span><i class="fas fa-fire" style="color: var(--danger); margin-right: 8px;"></i>热门话题</span>
+          <a style="font-size: 12px; color: var(--text-light); cursor: pointer;">更多</a>
+        </div>
+        <div class="hot-topic">
+          <div class="hot-topic-rank top1">1</div>
+          <div class="hot-topic-info">
+            <div class="hot-topic-title">零基础学吉他</div>
+            <div class="hot-topic-heat">2,345 热度</div>
+          </div>
+        </div>
+        <div class="hot-topic">
+          <div class="hot-topic-rank top2">2</div>
+          <div class="hot-topic-info">
+            <div class="hot-topic-title">程序员转行经验</div>
+            <div class="hot-topic-heat">1,892 热度</div>
+          </div>
+        </div>
+        <div class="hot-topic">
+          <div class="hot-topic-rank top3">3</div>
+          <div class="hot-topic-info">
+            <div class="hot-topic-title">英语口语练习</div>
+            <div class="hot-topic-heat">1,567 热度</div>
+          </div>
+        </div>
+        <div class="hot-topic">
+          <div class="hot-topic-rank">4</div>
+          <div class="hot-topic-info">
+            <div class="hot-topic-title">健身减脂打卡</div>
+            <div class="hot-topic-heat">1,234 热度</div>
+          </div>
+        </div>
+        <div class="hot-topic">
+          <div class="hot-topic-rank">5</div>
+          <div class="hot-topic-info">
+            <div class="hot-topic-title">UI设计入门</div>
+            <div class="hot-topic-heat">987 热度</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">
+          <span><i class="fas fa-star" style="color: var(--accent); margin-right: 8px;"></i>活跃达人</span>
+        </div>
+        <div class="active-user">
+          <div class="active-user-avatar" style="background: linear-gradient(135deg, #EC4899, #F472B6);">小</div>
+          <div class="active-user-info">
+            <div class="active-user-name">小雨吉他</div>
+            <div class="active-user-skill">吉他 · 128篇动态</div>
+          </div>
+          <div class="active-user-follow">+ 关注</div>
+        </div>
+        <div class="active-user">
+          <div class="active-user-avatar" style="background: linear-gradient(135deg, #3B82F6, #60A5FA);">张</div>
+          <div class="active-user-info">
+            <div class="active-user-name">张老师UI设计</div>
+            <div class="active-user-skill">UI设计 · 96篇动态</div>
+          </div>
+          <div class="active-user-follow">+ 关注</div>
+        </div>
+        <div class="active-user">
+          <div class="active-user-avatar" style="background: linear-gradient(135deg, #10B981, #34D399);">李</div>
+          <div class="active-user-info">
+            <div class="active-user-name">李老师英语</div>
+            <div class="active-user-skill">英语口语 · 87篇动态</div>
+          </div>
+          <div class="active-user-follow followed">已关注</div>
+        </div>
+        <div class="active-user">
+          <div class="active-user-avatar" style="background: linear-gradient(135deg, #F59E0B, #FBBF24);">王</div>
+          <div class="active-user-info">
+            <div class="active-user-name">小王摄影</div>
+            <div class="active-user-skill">摄影 · 76篇动态</div>
+          </div>
+          <div class="active-user-follow">+ 关注</div>
+        </div>
+        <div class="active-user">
+          <div class="active-user-avatar" style="background: linear-gradient(135deg, #8B5CF6, #A78BFA);">陈</div>
+          <div class="active-user-info">
+            <div class="active-user-name">陈老师Python</div>
+            <div class="active-user-skill">Python · 65篇动态</div>
+          </div>
+          <div class="active-user-follow">+ 关注</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer" style="margin-top: 48px;">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3><i class="fas fa-exchange-alt"></i> 技换空间</h3>
+      <p>以技会友，双向成长。<br>让每个人的技能都能产生价值，让学习不再是一个人的孤军奋战。</p>
+      <div class="footer-social">
+        <a><i class="fab fa-weixin"></i></a>
+        <a><i class="fab fa-weibo"></i></a>
+        <a><i class="fab fa-zhihu"></i></a>
+        <a><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>产品</h4>
+      <ul>
+        <li><a href="discover.html">发现技能</a></li>
+        <li><a href="publish.html">发布技能</a></li>
+        <li><a href="community.html">学习社区</a></li>
+        <li><a>技能币中心</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>关于</h4>
+      <ul>
+        <li><a>关于我们</a></li>
+        <li><a>加入我们</a></li>
+        <li><a>联系我们</a></li>
+        <li><a>合作伙伴</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>帮助</h4>
+      <ul>
+        <li><a>新手指南</a></li>
+        <li><a>常见问题</a></li>
+        <li><a>用户协议</a></li>
+        <li><a>隐私政策</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 技换空间. All rights reserved. 以技会友，双向成长
+  </div>
+</footer>
+
+<script>
+// 关注按钮切换
+document.querySelectorAll('.active-user-follow').forEach(btn => {
+  btn.addEventListener('click', function() {
+    if (this.classList.contains('followed')) {
+      this.classList.remove('followed');
+      this.textContent = '+ 关注';
+    } else {
+      this.classList.add('followed');
+      this.textContent = '已关注';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
